@@ -1,0 +1,37 @@
+<apex:page standardController="Issue_Tracker__c" extensions="IssueTrackerCtrl" showHeader="true" tabStyle="log_a_case__tab" standardStylesheets="true" lightningStylesheets="true">
+    <h4><center><font size="20">Support Case</font></center></h4>        
+    <apex:form >
+
+    <apex:pageBlock mode="edit" >
+        <apex:pageBlockSection columns="2">
+           Name:  {!$User.FirstName} {!$User.LastName}
+           <apex:outputField value="{!Issue_Tracker__c.Issue_Status__c}"/>
+        </apex:pageBlockSection>
+        
+        <apex:pageBlockSection title="Case Description" collapsible="false" columns="1">
+            <apex:inputField value="{!Issue_Tracker__c.Subject__c}" style="width: 371px;"/>
+            <apex:inputField value="{!Issue_Tracker__c.Severity_Level__c}"/>
+            <apex:outputPanel >
+                <pre>                Level 1 - Urgent: Critical production issue affecting all users and with no workaround. <br/>
+                Level 2 - High: Major functionality impact or significant performance degradation affecting multiple users and with no reasonable workaround.<br/>
+                Level 3 - Medium: System performance issue or bug affecting some users.<br/>
+                Level 4 - Low: Inquiry about routine technical issues, application capabilities, navigation, installation or configuration. <br/></pre>
+            </apex:outputPanel>
+             <apex:inputField value="{!Issue_Tracker__c.Issues_With__c}"/>
+             <apex:inputField value="{!Issue_Tracker__c.Issue_Description__c}" style="width: 371px; height: 61px;"/>
+            <apex:inputField value="{!Issue_Tracker__c.Instance_Type__c}"/>
+             <apex:inputField value="{!Issue_Tracker__c.Reported_By__c}"/>
+            <apex:inputField value="{!Issue_Tracker__c.Issue_Opened_On__c}"/>
+            <apex:inputField value="{!Issue_Tracker__c.Remarks__c}" style="width: 371px; height: 61px;"/>
+            <apex:inputField value="{!Issue_Tracker__c.Issue_Impact__c}" style="width: 371px;"/>
+        </apex:pageBlockSection>
+            <center><apex:commandButton value="Submit" action="{!save}"/>
+            <apex:commandButton value="Cancel" action="{!cancel}"/></center>
+
+    </apex:pageBlock>      
+    
+</apex:form>
+
+
+
+</apex:page>

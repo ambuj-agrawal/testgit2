@@ -1,0 +1,21 @@
+<apex:page standardController="Opportunity" extensions="OpportunityUpload">
+    <apex:form >
+        <apex:pagemessages />
+        <apex:pageBlock id="pb">
+            <apex:pageBlockSection columns="4"> 
+                  <apex:inputFile value="{!csvFileBody}"  filename="{!csvAsString}" />
+                  <apex:commandButton value="Import Room" action="{!importCSVFile}" />
+                  <apex:commandButton value="Upload Room" action="{!upload}" />
+            </apex:pageBlockSection>
+        </apex:pageBlock>
+        <apex:pageBlock >
+           <apex:pageblocktable value="{!accList}" var="acc">
+              <!--<apex:column value="{!acc.name}" />-->
+              <apex:column value="{!acc.Type__c}" />
+              <apex:column value="{!acc.Price__c}" />
+              <apex:column value="{!acc.Room_No__c  }" />
+              
+        </apex:pageblocktable>
+     </apex:pageBlock>
+   </apex:form>
+</apex:page>

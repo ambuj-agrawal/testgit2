@@ -1,0 +1,28 @@
+<apex:page standardController="Studentss__c">
+    <apex:sectionHeader title="Student Edit" subtitle="{!Studentss__c.Name}"/>
+    <apex:form >
+        <apex:pageBlock title="Student Edit" mode="edit" id="pbb">
+
+            <apex:pageBlockButtons >
+                <apex:commandButton value="Save" action="{!save}"/>
+                <apex:commandButton value="Save & New" action="{!save}" />
+                <apex:commandButton value="Cancel" action="{!cancel}"/>
+            </apex:pageBlockButtons>
+
+
+            <apex:pageBlockSection title="Information" columns="2">
+                <apex:inputField value="{!Studentss__c.Name}" required="true"/>
+                <apex:inputField value="{!Studentss__c.OwnerId}" required="false"/>
+                <apex:inputField value="{!Studentss__c.Journey_del__c}" required="false"/>
+                <apex:inputField value="{!Studentss__c.Picklist__c}" required="false">
+                    <apex:actionSupport event="onchange" reRender="pbb"/>
+                </apex:inputField>
+                <apex:inputField value="{!Studentss__c.Multi__c}" required="false">
+                    <apex:actionSupport event="onchange" reRender="pbb"/>
+                </apex:inputField>   
+                <apex:inputField value="{!Studentss__c.Number__c}" required="false" rendered="{!(contains(Studentss__c.Multi__c, 'other') && Studentss__c.Multi__c != '')}"/>
+            </apex:pageBlockSection>
+                
+        </apex:pageBlock>
+    </apex:form>
+</apex:page>

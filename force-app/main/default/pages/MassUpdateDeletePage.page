@@ -1,0 +1,120 @@
+<apex:page controller="MassUpdate_Delete" sidebar="false" showHeader="false" docType="HTML-5.0">
+    <html xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <head>
+        <script type="text/javascript" src="https://code.jquery.com/jquery-2.2.4.js"></script>
+        <script type="text/javascript" language="javascript" >
+        function toggleFilterText()
+        {
+            $("#hrf").click(function(){
+                $("#filter").toggle();
+            });
+        }
+        function deleteRow(numberRow)
+        {
+            deleterow(numberRow);
+        }
+        </script>
+        <apex:stylesheet value="{!URLFOR($Resource.SLDS080, 'assets/styles/salesforce-lightning-design-system-vf.css')}" />
+        <style>
+            .lbl {
+                font-style: Chiller;
+                size: 20px;
+            }
+            
+            ::-webkit-scrollbar {
+                width: 6px;
+                height: 8px;
+            }
+            
+            ::-webkit-scrollbar-track-piece {
+                background-color: #a8b7c7;
+                border-radius: 20px;
+            }
+            
+            ::-webkit-scrollbar-thumb:vertical {
+                height: 30px;
+                background-color: #e0e5ee;
+                border-radius: 20px;
+            }
+        </style>
+    </head>
+    <apex:form id="theForm">
+        <apex:pageMessages id="msg" />
+        <div class="slds">
+            <apex:actionStatus id="lad" stopText="">
+                <apex:facet name="start">
+                    <div id="blockUIDiv" style="">
+                        <div class="blockUI blockOverlay" style="z-index: 8888; border: none; margin: 0px; padding: 0px; width: 100%; height: 100%; top: 0px; left: 0px; opacity: 0.6; cursor: wait; position: fixed; background-color: rgb(0, 0, 0);"></div>
+                        <div class="blockUI blockMsg blockPage" style="z-index: 9999; position: fixed; padding: 15px; margin: 0px; width: 30%; top: 40%; left: 35%;
+                               text-align: center; color: rgb(0, 0, 0); border: none; cursor: wait; border-radius: 10px; opacity: 0.9; background-color: rgb(255, 255, 255);">
+                            <img src="{!URLFOR($Resource.SLDS080, 'assets/images/spinners/slds_spinner_brand.gif')}" style="width:35px;height:35px;" /><br/></div>
+                    </div>
+                </apex:facet>
+            </apex:actionStatus>
+            <apex:actionFunction name="Afun1" action="{!members}" reRender="theForm,panel,secId" status="lad" />
+            <apex:actionFunction name="actionFun" action="{!searchResult}" status="lad" reRender="outpanelid,msg, aaa" /> 
+            <apex:actionFunction name="deleterow" action="{!deleteRows}" rerender="tab" status="lad">
+                <apex:param assignTo="{!rowToDelete}" name="deleRow" value=""/>
+            </apex:actionFunction>
+            <apex:pageBlock title="Object And Field Search" id="pgblck">
+                <apex:pageBlockButtons Location="Both">
+                    <apex:commandButton value="Search" rendered="{!objectName != null}" onclick="actionFun();return false;" />
+                </apex:pageBlockButtons>
+                <apex:pageBlockSection id="secId" >
+                    All Objects from Org.
+                    <apex:SelectList value="{!objectName}" size="1" onchange="Afun1()" Styleclass="slds-select" style="width: 312px;">
+                        <apex:selectOptions value="{!listOfObject}" />
+                    </apex:SelectList>
+                    <apex:outputPanel rendered="{!objectName != null}" id="panel">
+                        <apex:PageBlockTable value="{!wrapperList}" var="wrap" id="tab" >
+                            <apex:column headerValue="No.">
+                                {!wrap.rowCountWrap}. 
+                            </apex:column>
+                            <apex:column headerValue="Fields of selected Object">
+                                <apex:SelectList value="{!wrap.SelectedfieldWrap}" size="1">
+                                    <apex:selectOptions value="{!wrap.fieldListWrap}" />
+                                </apex:SelectList>
+                            </apex:column>
+                            <apex:column headerValue="List of Operators">
+                                <apex:SelectList value="{!wrap.SelectedOperatorWrap}" size="1">
+                                    <apex:selectOptions value="{!wrap.listOperatorsWrap}" />
+                                </apex:SelectList>
+                            </apex:column>
+                            <apex:column headerValue="Value to be Search">
+                                <apex:inputText value="{!wrap.valueForSearchWrap}" />
+                            </apex:column>
+                            <apex:column headerValue="Remove">
+                                <div><apex:outputLink onClick="deleteRow({!wrap.rowCountWrap});return false"> X </apex:outputLink> </div> 
+                            </apex:column>
+                            <apex:column headerValue="Action" rendered="{!filter==true}" id="act">
+                                AND
+                            </apex:column>
+                           
+                        </apex:PageBlockTable>
+                        <apex:commandButton value="AddRow" action="{!addRow}" rerender="theForm,panel" status="lad" rendered="{!filter==false}"/>
+                    </apex:outputPanel>
+                </apex:pageBlockSection>
+                <apex:pageBlockSection id="sect">
+                <apex:commandButton action="{!addfilter}" value="Add Filter" rendered="{!objectName != null}" reRender="sect, pnl, panel"/>
+                <apex:commandButton action="{!hidefilter}" value="hide Filter" rendered="{!filter==false}" reRender="sect, pnl, panel"/>
+                <apex:outputPanel rendered="{!filter==false}" id="pnl"> 
+                    <span id="filter">
+                    <apex:inputText value="{!FilterValue}" style="width: 60%;" /></span>
+                </apex:outputPanel>
+                </apex:pageBlockSection>
+            </apex:pageBlock>
+             <apex:pageBlock rendered="{!objectName != null}" id="aaa">
+             <apex:pageBlockSection title="table">
+                    <apex:pageBlockTable value="{!lst}" var="rowItem" Styleclass="slds-table slds-table--bordered slds-table--cell-buffer">
+                        <apex:repeat value="{!rowItem}" var="colItem">  
+                            <apex:column value="{!colItem['id']}"/>
+                            <apex:column value="{!colItem['name']}"/>
+                        </apex:repeat>  
+                    </apex:pageBlockTable>
+              </apex:pageBlockSection>      
+              </apex:pageBLock>
+            
+        </div>
+    </apex:form>
+    </html>
+</apex:page>

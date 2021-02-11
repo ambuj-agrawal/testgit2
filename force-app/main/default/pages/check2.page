@@ -1,0 +1,16 @@
+<apex:page standardcontroller="Contact" showHeader="false" sidebar="false">
+  <style>
+    body {
+        background-image: url("http://eskipaper.com/images/simple-ios7-wallpaper-1.jpg"); 
+    }
+</style>
+<html>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<center><h1>Thank You.....!!!!!!</h1></center>
+</html>
+</apex:page>

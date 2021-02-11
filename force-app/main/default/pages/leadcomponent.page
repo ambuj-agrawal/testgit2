@@ -1,0 +1,11 @@
+<apex:page standardController="Lead" showHeader="false">
+    <apex:form >
+    <apex:pageBlock >
+        <apex:pageBlockSection columns="1">
+            <apex:inputField value="{!lead.Profile__c}"/>
+        
+        </apex:pageBlockSection>
+    
+    </apex:pageBlock>
+  </apex:form>
+</apex:page>

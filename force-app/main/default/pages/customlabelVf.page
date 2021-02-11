@@ -1,0 +1,18 @@
+<apex:page showHeader="false" applyHtmlTag="false"
+applyBodyTag="false" docType="html-5.0"
+controller="ProductDetailController">
+    Page_Header
+    <br/>
+    <br/>
+    <h3>
+        Product Name: {!productName}
+    </h3>
+    <br/>
+    <h5>
+        Product_Description: {!productDescription}
+    </h5>
+    <br/>
+    <h5>
+        Product_Weight: {!productWeight}
+    </h5>
+</apex:page>

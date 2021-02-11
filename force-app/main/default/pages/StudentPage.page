@@ -1,0 +1,18 @@
+<apex:page controller="StudentPageController">
+  <apex:form >
+    <apex:pageBlock >
+        <apex:commandButton value="Save" action="{!CreateStudent}"/>
+        <apex:pageBlockSection >
+                <apex:inputField value="{!stdObj.Class__c}" />
+                <apex:inputField value="{!stdObj.Email__c}"/>
+                <apex:inputField value="{!stdObj.DOB__c}"/>
+                <apex:inputField value="{!stdObj.Salutation__c}"/>
+                <apex:inputField value="{!stdObj.First_Name__c}" />
+                <apex:inputField value="{!stdObj.Last_Name__c}"/>
+                <apex:inputField value="{!stdObj.Have_Vehicle__c}"/>
+                <apex:inputField value="{!stdObj.Married__c}"/>
+                <apex:inputField value="{!stdObj.Gender__c}"/>
+            </apex:pageBlockSection>
+        </apex:pageBlock>
+  </apex:form>
+</apex:page>

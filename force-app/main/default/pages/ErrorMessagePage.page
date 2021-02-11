@@ -1,0 +1,5 @@
+<apex:page standardController="Account" lightningStylesheets="true" extensions="ErrorMessageCtrl" showQuickActionVfHeader="false">
+    <apex:pageBlock >
+        <apex:pageMessages />
+    </apex:pageBlock>
+</apex:page>

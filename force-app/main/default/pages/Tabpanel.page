@@ -1,0 +1,34 @@
+<apex:page standardController="Account" lightningStylesheets="true" standardStylesheets="true">
+   
+    	<apex:pageBlock >
+           	
+        	<apex:tabPanel >
+            	<apex:tab label="Basic Info">
+                    <!--<apex:pageBlockSection>
+                		<apex:outputField value="{!Account.name}"/>
+                        <apex:outputField value="{!Account.Phone}"/>
+                        <apex:outputField value="{!Account.Fax}"/>
+                        <apex:outputField value="{!Account.AccountNumber}"/>
+                        <apex:outputField value="{!Account.Type}"/>
+                        <apex:outputField value="{!Account.Industry}"/>
+                        <apex:outputField value="{!Account.Website}"/>
+                        <apex:outputField value="{!Account.Ownership}"/>
+                    </apex:pageBlockSection>-->
+                    <apex:detail relatedList="false"/>
+                </apex:tab>
+                <apex:tab label="Related List">
+                	<apex:pageBlockSection >
+                		
+
+                        <apex:relatedList list="Contacts">
+                            
+                        </apex:relatedList>
+                        <apex:relatedList list="Opportunities" />
+                        <apex:relatedList list="Cases"  />
+                    </apex:pageBlockSection>
+                </apex:tab>
+            </apex:tabPanel>
+                
+        </apex:pageBlock>
+   
+</apex:page>

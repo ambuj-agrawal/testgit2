@@ -1,0 +1,27 @@
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" access="global" >
+    <html lang="en-US">
+        
+        
+        <head>
+            <meta charset="utf-8"/>
+            <meta http-equiv="X-UA-Compatible" content="IE=Edge"/>
+            <meta name="viewport" content="width=device-width, initial-scale=1"/>
+            <title>Gauge Chart with datalabels plugin</title>
+            <ltng:require scripts="/resource/Gauge/gauge/Chart.bundle.js,
+                           /resource/Gauge/gauge/chartjs-gauge.js,
+                           /resource/Gauge/gauge/chartjs-plugin-datalabels.js
+                           " afterScriptsLoaded="{!c.afterScriptsLoaded}"/>
+            <!--<script src="https://unpkg.com/chart.js@2.8.0/dist/Chart.bundle.js"></script>
+            <script src="https://unpkg.com/chartjs-gauge@0.2.0/dist/chartjs-gauge.js"></script>
+            <script src="https://unpkg.com/chartjs-plugin-datalabels@0.7.0/dist/chartjs-plugin-datalabels.js"></script>-->
+            
+        </head>
+        
+        <body>
+            <div id="canvas-holder" style="width:100%">
+                <canvas id="chart" width="950" height="250"></canvas>
+            </div>
+            <button id="randomizeData">Randomize Data</button>
+        </body>
+    </html>
+</aura:component>

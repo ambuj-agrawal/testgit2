@@ -1,0 +1,13 @@
+<aura:component >
+<aura:attribute name="htmlval" type="String"/>
+<aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+<div>
+The unescaped HTML value : <aura:unescapedHtml value="{!v.htmlval}" />
+The value of attribute :{!v.htmlval}
+    
+</div>
+    
+    <Strong><a href="google.com" target="_blank"><strong>Ambuj</strong>
+					
+				<sup style="font-size: 10px;"><aura:unescapedHTML value="{!v.htmlval}"/></sup></a></Strong>
+</aura:component>

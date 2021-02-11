@@ -1,0 +1,143 @@
+<apex:page >
+<html>
+<head>
+<title>Contact</title>
+<link rel="stylesheet" type="text/css" href="/salesforce/assets/bootstrap-3.3.5-dist/css/bootstrap.min.css"/>
+<script src="/salesforce/assets/jquery/jquery-1.11.3.min.js"></script>
+<script src="/salesforce/assets/bootstrap-3.3.5-dist/js/bootstrap.min.js"></script>
+<script src="/salesforce/assets/jquery-validate/jquery.validate.min.js"></script>
+<script>
+    $.validator.setDefaults({
+        highlight: function(element) {
+            $(element).closest('.form-group').addClass('has-error');
+        },
+        unhighlight: function(element) {
+            $(element).closest('.form-group').removeClass('has-error');
+        },
+        errorElement: 'span',
+        errorClass: 'help-block',
+        errorPlacement: function(error, element) {
+            if(element.parent('.input-group').length) {
+                error.insertAfter(element.parent());
+            } else {
+                error.insertAfter(element);
+            }
+        }
+    });
+ 
+    $( document ).ready(function() {
+        $("#contact_form").validate();
+    });
+</script>
+<style>
+    body {
+        width:800px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+</style>
+</head>
+<body>
+<!--  ----------------------------------------------------------------------  -->
+<!--  NOTE: Please add the following <META> element to your page <HEAD>.      -->
+<!--  If necessary, please modify the charset parameter to specify the        -->
+<!--  character set of your HTML page.                                        -->
+<!--  ----------------------------------------------------------------------  -->
+<META HTTP-EQUIV="Content-type" CONTENT="text/html; charset=UTF-8"/>
+<!--  ----------------------------------------------------------------------  -->
+<!--  NOTE: Please add the following <FORM> element to your page.             -->
+<!--  ----------------------------------------------------------------------  -->
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-xs-12 col-md-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <span class="glyphicon glyphicon-earphone" style="font-size:16px;" aria-hidden="true"></span>
+                    &nbsp;&nbsp;&nbsp;
+                    <strong>Contact Form</strong>
+                </div>
+                <div class="panel-body">
+                    <form id="contact_form" action="https://www.salesforce.com/servlet/servlet.WebToLead?encoding=UTF-8" method="POST">
+                    <input type="hidden" name="oid" value="[replace with web-to-lead generated oid]"/>
+                    <input type="hidden" name="retURL" value="../demo/web-to-lead/thankyou.html"/>
+                    <!--  ----------------------------------------------------------------------  -->
+                    <!--  NOTE: These fields are optional debugging elements. Please uncomment    -->
+                    <!--  these lines if you wish to test in debug mode.                          -->
+                    <!--  <input type="hidden" name="debug" value=1>                              -->
+                    <!--  <input type="hidden" name="debugEmail"                                  -->
+                    <!--  value="tkang@blueflame-software.com">                                   -->
+                    <!--  ----------------------------------------------------------------------  -->
+                    <div class="row">
+                <div class="col-xs-6 col-md-6">
+                            <div class="form-group">
+                                <label for="first_name">First Name <span style="color:red;">*</span></label>
+                                <input  id="first_name" maxlength="40" name="first_name" size="20" type="text" class="form-control"/>
+                            </div>
+                        </div>
+                        <div class="col-xs-6 col-md-6">
+                            <div class="form-group">
+                                <label for="last_name">Last Name <span style="color:red;">*</span></label>
+                                <input  id="last_name" maxlength="80" name="last_name" size="20" type="text" class="form-control" />
+                            </div>
+ 
+                        </div>
+                    </div>
+                    <div class="row">
+                <div class="col-xs-4 col-md-4">
+                            <div class="form-group">
+                                <label for="email">Email <span style="color:red;">*</span></label>
+                                <input  id="email" maxlength="80" name="email" size="20" type="text" class="form-control" />
+                             </div>
+                        </div>
+                        <div class="col-xs-4 col-md-4">
+                            <div class="form-group">
+                                <label for="phone">Phone</label>
+                                <input  id="phone" maxlength="40" name="phone" size="20" type="text" class="form-control" />
+                            </div>
+                        </div>
+                        <div class="col-xs-4 col-md-4">
+                            <div class="form-group">
+                                <label for="company">Company</label>
+                                <input  id="company" maxlength="40" name="company" size="20" type="text" class="form-control" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                <div class="col-xs-12 col-md-12">
+                            <div class="form-group">
+                                <label for="areas_of_interest">Areas of Interest:</label>
+                                <select id="00No000000C0nSi" multiple="multiple" name="00No000000C0nSi" title="Areas of Interest" size="6" class="form-control" >
+                                <option value="Saleforce1 Platform Development">Saleforce1 Platform Development</option>
+                                <option value="Salesforce Customization">Salesforce Customization</option>
+                                <option value="Point &amp; Click Development">Point &amp; Click Development</option>
+                                <option value="User Interface">User Interface</option>
+                                <option value="Data Integration">Data Integration</option>
+                                <option value="Others">Others</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                <div class="col-xs-12 col-md-12">
+                            <div class="form-group">
+                                <label for="description">Comments</label>
+                                <textarea name="description" class="form-control" ></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                <div class="col-xs-4 col-md-4">
+                            <div class="form-group">
+                                <input class="btn btn-primary" type="submit" name="submit"/>
+                            </div>
+                        </div>
+                    </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
+</apex:page>

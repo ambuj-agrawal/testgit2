@@ -1,0 +1,68 @@
+<apex:page standardController="account">
+	<apex:sectionHeader title="Account Edit" subtitle="{!account.Name}"/>
+	<apex:form >
+		<apex:pageBlock title="Account Edit" mode="edit">
+
+			<apex:pageBlockButtons >
+				<apex:commandButton value="Save" action="{!save}"/>
+				<apex:commandButton value="Save & New" action="{!save}" />
+				<apex:commandButton value="Cancel" action="{!cancel}"/>
+			</apex:pageBlockButtons>
+
+
+			<apex:pageBlockSection title="Account Information" columns="2">
+				<apex:inputField value="{!account.OwnerId}" required="false"/>
+				<apex:inputField value="{!account.Rating}" required="false"/>
+				<apex:inputField value="{!account.Name}" required="true"/>
+				<apex:inputField value="{!account.Phone}" required="false"/>
+				<apex:inputField value="{!account.ParentId}" required="false"/>
+				<apex:inputField value="{!account.Fax}" required="false"/>
+				<apex:inputField value="{!account.AccountNumber}" required="false"/>
+				<apex:inputField value="{!account.Website}" required="false"/>
+				<apex:inputField value="{!account.Site}" required="false"/>
+				<apex:inputField value="{!account.TickerSymbol}" required="false"/>
+				<apex:inputField value="{!account.Type}" required="false"/>
+				<apex:inputField value="{!account.Ownership}" required="false"/>
+				<apex:inputField value="{!account.Industry}" required="false"/>
+				<apex:inputField value="{!account.NumberOfEmployees}" required="false"/>
+				<apex:inputField value="{!account.AnnualRevenue}" required="false"/>
+				<apex:inputField value="{!account.Sic}" required="false"/>
+				<apex:inputField value="{!account.TotalAmount__c}" required="false"/>
+				<apex:inputField value="{!account.Amount_X__c}" required="false"/>
+				<apex:inputField value="{!account.Amount_Y__c}" required="false"/>
+				<apex:inputField value="{!account.autonumber__c}" required="false"/>
+			</apex:pageBlockSection>
+
+
+			<apex:pageBlockSection title="Address Information" columns="2">
+				<apex:inputField value="{!account.BillingStreet}" required="false"/>
+				<apex:inputField value="{!account.ShippingStreet}" required="false"/>
+				<apex:inputField value="{!account.BillingCity}" required="false"/>
+				<apex:inputField value="{!account.ShippingCity}" required="false"/>
+				<apex:inputField value="{!account.BillingState}" required="false"/>
+				<apex:inputField value="{!account.ShippingState}" required="false"/>
+				<apex:inputField value="{!account.BillingPostalCode}" required="false"/>
+				<apex:inputField value="{!account.ShippingPostalCode}" required="false"/>
+				<apex:inputField value="{!account.BillingCountry}" required="false"/>
+				<apex:inputField value="{!account.ShippingCountry}" required="false"/>
+			</apex:pageBlockSection>
+
+
+			<apex:pageBlockSection title="Additional Information" columns="2">
+				<apex:inputField value="{!account.CustomerPriority__c}" required="false"/>
+				<apex:inputField value="{!account.SLA__c}" required="false"/>
+				<apex:inputField value="{!account.SLAExpirationDate__c}" required="false"/>
+				<apex:inputField value="{!account.SLASerialNumber__c}" required="false"/>
+				<apex:inputField value="{!account.NumberofLocations__c}" required="false"/>
+				<apex:inputField value="{!account.UpsellOpportunity__c}" required="false"/>
+				<apex:inputField value="{!account.Active__c}" required="false"/>
+			</apex:pageBlockSection>
+
+
+			<apex:pageBlockSection title="Description Information" columns="1">
+				<apex:inputField value="{!account.Description}" required="false"/>
+			</apex:pageBlockSection>
+
+		</apex:pageBlock>
+	</apex:form>
+</apex:page>

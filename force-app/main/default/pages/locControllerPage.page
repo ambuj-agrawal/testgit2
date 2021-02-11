@@ -1,0 +1,25 @@
+<apex:page showHeader="true" sidebar="true">
+
+       <script>
+       setNickname('blah');
+
+        function setNickname(nickname){
+            alert('setting variable');
+            var lat = 0;
+            var long = 0;
+            if (navigator.geolocation) {
+                alert('we are golden');
+                navigator.geolocation.getCurrentPosition(function(position){
+                        alert('alert 0');
+                        lat = position.coords.latitude;
+                        long = position.coords.longitude;
+                        alert('alert 1: ' + lat + ', ' + long);
+                }, function(error) { alert('ERROR(' + error.code + '): ' + error.message); });
+            }else{
+                alert('geolocation is unsupported?');
+            }
+            alert('alert 2: ' + lat + ', ' + long);
+        }
+    </script>
+
+</apex:page>

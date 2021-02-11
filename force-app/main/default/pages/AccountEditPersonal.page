@@ -1,0 +1,21 @@
+<apex:page standardController="Account" extensions="AccountEditPersonalController">
+     <apex:form >
+         <apex:pageBlock title="Account Edit">
+             <apex:pageblockSection title="Account Information">
+                 <apex:inputField value="{!Account.Name}"/>
+                 <apex:inputField value="{!Account.Phone}"/>
+                 <apex:inputField value="{!Account.Fax}"/>
+                 <apex:inputField value="{!Account.Industry}"/>
+                 <apex:inputField value="{!Account.CleanStatus}"/>
+                 <apex:inputField value="{!Account.Type}"/>
+                 <apex:inputField value="{!Account.Website}"/>
+                 <apex:inputField value="{!Account.NumberOfEmployees}"/>
+             </apex:pageblockSection>
+             <apex:pageBlockbuttons >
+                 <apex:commandButton value="Save" action="{!Save}"/>
+                 <apex:commandButton value="Save & New" action="{!saveAndNew}"/>
+                 <apex:commandButton value="Cancel" action="{!cancel}"/>
+             </apex:pageBlockbuttons>
+          </apex:pageBlock>
+     </apex:form>
+</apex:page>

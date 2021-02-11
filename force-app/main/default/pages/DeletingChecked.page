@@ -1,0 +1,32 @@
+<apex:page controller="DeletingCheckedController">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
+<script>
+    $(document).ready(function(){
+        $("#checkAll").click(function(){
+            $('input:checkbox').not(this).prop('checked', this.checked);
+        });
+    });
+</script>
+
+
+
+  <apex:form >
+  <apex:pageBlock >
+  <apex:inlineEditSupport event="checked"  showOnEdit="saveButton"/>
+      <apex:pageBlockTable value="{!listWrapper}" var="lw" id="ab">
+        <apex:column >
+            <apex:facet name="header"><input type="checkbox" id="checkAll"/></apex:facet>
+            <apex:inputCheckbox value="{!lw.checked}" styleclass="checkedone"/>
+        </apex:column>
+        <apex:column value="{!lw.cnt.Name}"/>
+        <apex:column value="{!lw.cnt.Email}"/>
+      
+        </apex:pageBlockTable>
+      <apex:pageBlockButtons >
+                <apex:commandButton value="Delete" action="{!del}" reRender="ab"/>
+      </apex:pageBlockButtons>
+  </apex:pageBlock>
+
+  </apex:form>
+</apex:page>

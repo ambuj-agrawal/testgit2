@@ -1,0 +1,16 @@
+<apex:page standardController="Contact">
+  <apex:form >
+      <apex:pageBlock >
+         <apex:pageBlockSection >
+                    
+         
+          <apex:outputField value="{!contact.FirstName}"/>
+          <apex:outputField value="{!contact.LastName}"/>
+          <apex:outputField value="{!contact.Phone}"/>
+          <apex:outputField value="{!contact.Email}"/>
+          <apex:outputField value="{!contact.AccountId}"/>
+      
+           </apex:pageBlockSection>
+      </apex:pageBlock>
+  </apex:form>
+</apex:page>

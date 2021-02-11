@@ -1,0 +1,28 @@
+<aura:component implements="flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,force:lightningQuickAction" access="global" >
+    <aura:handler name="init" value="{!this}" action="{!c.onInit}"/> 
+    <aura:attribute name="latValue" type="Integer" />
+    <aura:attribute name="longValue" type="Integer" />
+    <aura:attribute name="errorMsg" type="String" />
+    
+    
+	<lightning:tile label="{!v.errorMsg}" >
+        <aura:set attribute="media">
+            <lightning:icon iconName="standard:location"/>
+        </aura:set>
+        <dl class="slds-dl_horizontal">
+            <dt class="slds-dl_horizontal__label">
+                <p class="slds-truncate" >Latitute:</p>
+            </dt>
+            <dd class="slds-dl_horizontal__detail slds-tile__meta">
+                <p class="slds-truncate" >{!v.latValue}</p>
+            </dd>
+            <dt class="slds-dl_horizontal__label">
+                <p class="slds-truncate" >longitude:</p>
+            </dt>
+            <dd class="slds-dl_horizontal__detail slds-tile__meta">
+                <p class="slds-truncate" >{!v.longValue}</p>
+            </dd>
+        </dl>
+    </lightning:tile>
+    
+</aura:component>

@@ -1,0 +1,45 @@
+<apex:page standardController="Account" id="pa" docType="" >
+    <apex:sectionHeader title="Account Edit" subtitle="New Account"/>
+    <script src="https://code.jquery.com/jquery-latest.min.js"></script>  
+        
+
+    <apex:form id="frm">
+        <apex:pageBlock mode="edit" id="pb">
+            <apex:pageBlockButtons >
+                <apex:commandButton value="Save" action="{!Save}"/>
+            </apex:pageBlockButtons>
+            <apex:pageBlockSection title="Information" id="pbs">
+                <apex:inputField value="{!Account.name}"/>
+                <apex:inputField value="{!Account.ParentId}"/>
+                <apex:inputField value="{!Account.AccountNumber}"/>
+                <apex:inputField value="{!Account.Site}"/>
+                <apex:inputField value="{!Account.Type}"/>
+                <apex:inputField value="{!Account.Industry}"/>
+                <apex:inputField value="{!Account.AnnualRevenue}"/>
+                <apex:inputField value="{!Account.Phone}"/>
+            
+            </apex:pageBlockSection>
+        </apex:pageBlock>
+    
+    </apex:form> 
+    <script>
+        //var newText = document.getElementsByClassName('requiredText')[0];
+        //newText.innerHTML = '= new text here';
+    </script>
+    
+    <script>  
+   $(document).ready(function(){  
+      $.ajax({  
+         type: "GET" ,  
+         url: "translate.xml" ,  
+         success: function(xml) {  
+             $(xml).find('string').each(function(){  
+                var item_id = $(this).attr("id");  
+                $("#" + item_id).text($(this).attr("en"));  
+             });  
+         }  
+      });  
+   });  
+</script>  
+  
+</apex:page>

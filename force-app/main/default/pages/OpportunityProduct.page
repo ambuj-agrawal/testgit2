@@ -1,0 +1,66 @@
+<apex:page controller="myOpptyController" tabStyle="Opportunity"> 
+    <apex:form id="full">    
+        <apex:actionstatus id="counterStatus">
+            <apex:facet name="start">
+                <div class="waitingSearchDiv" id="el_loading" style="background-color: #fbfbfb; height:100%;opacity:0.65;width:100%;">
+                    <div class="waitingHolder" style="top: 100px; width: 91px;">
+                        <img class="waitingImage" src="/img/loading.gif" title="Please Wait..." />
+                        <span class="waitingDescription">Loading...</span>
+                    </div>
+                </div>
+            </apex:facet>
+        </apex:actionstatus>
+        <apex:sectionHeader title="Product Selection for" subtitle="Opportunity {!opp.Name}" rendered="{!check == false}" />
+        <apex:pageBlock rendered="{!check == false}" id="pb" title="Product Details (Total List Size: {!total_size})">
+            <apex:commandButton value="Select" action="{!sel}" style="margin-left:460px" reRender="full" status="counterStatus"/>
+            <apex:commandButton value="Cancel" action="{!Can}" style="margin-left:5px"/>
+                <apex:pageBlockTable value="{!listWrapper}" var="div" id="pbt">
+                <apex:facet name="footer">Showing Page # {!pageNumber} of {!totalPages}</apex:facet>
+                        <apex:column >
+                            <apex:inputCheckbox value="{!div.checked}"/>
+                        </apex:column>
+                    <apex:repeat value="{!$ObjectType.PriceBookEntry.fieldsets.Set1}" var="fieldValue">
+                        
+                        <!--<apex:column value="{!div.cnt.Name}"/>
+                        <apex:column value="{!div.cnt.ProductCode}"/>
+                        <apex:column value="{!div.cnt.unitprice}"/>
+                        <apex:column value="{!div.cnt.product2.Description}"/>
+                        <apex:column value="{!div.cnt.product2.Family}"/>-->
+                        <apex:column value="{!div.cnt[fieldValue]}">
+                        </apex:column>
+                    </apex:repeat>
+                </apex:pageBlockTable>
+            <apex:commandButton action="{!Beginning}" title="Beginning" value="First" disabled="{!disablePrevious}" reRender="pb,full" status="counterStatus"/>
+            <apex:commandButton action="{!Previous}" title="Previous" value="Previous" disabled="{!disablePrevious}" reRender="pb,full" status="counterStatus"/>        
+            <apex:commandButton action="{!Next}" title="Next" value="Next" disabled="{!disableNext}" reRender="pb,full" status="counterStatus"/>
+            <apex:commandButton action="{!End}" title="End" value="Last" disabled="{!disableNext}" reRender="pb,full" status="counterStatus"/>  
+        </apex:pageBlock>
+        <apex:sectionHeader title="Add Products to" subtitle="{!opp.Name}" rendered="{!check == True}"/>
+        <apex:pageBlock rendered="{!check == True}"> 
+            <apex:commandButton value="Save" action="{!save}" style="margin-left:460px"/>
+            <apex:commandButton value="Cancel" action="{!cancel}" style="margin-left:5px" immediate="true" status="counterStatus"/>
+            <apex:pageBlockTable value="{!listPriceSelected}" var="lps">
+                <apex:column >
+                    <apex:facet name="header">Product</apex:facet>
+                    <apex:outputField value="{!lps.PriceBookEntry.Product2.Name}"/>
+                </apex:column>
+                <apex:column >
+                    <apex:facet name="header">Quantity</apex:facet>
+                    <apex:inputField value="{!lps.Quantity}" required="true"/>
+                </apex:column>
+                <apex:column >
+                    <apex:facet name="header">Sales Price</apex:facet>
+                    <apex:inputField value="{!lps.UnitPrice}"/>
+                </apex:column>
+                <apex:column >
+                    <apex:facet name="header">Date</apex:facet>
+                    <apex:inputField value="{!lps.ServiceDate}"/>
+                </apex:column>
+                <apex:column >
+                    <apex:facet name="header">Line Description</apex:facet>
+                    <apex:inputField value="{!lps.Description}"/>
+                </apex:column>
+            </apex:pageBlockTable>
+        </apex:pageBlock>
+    </apex:form>
+</apex:page>

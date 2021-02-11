@@ -1,0 +1,34 @@
+<apex:page controller="scannerController">
+    <apex:form >
+        <script>
+        (function() {
+            "use strict";
+            window.addEventListener(
+                "load",
+                function() {
+                    var input = document.getElementById("scanner");
+                    input.addEventListener(
+                        "keydown",
+                        function(event) {
+                            if(event.keyCode !== 13) {
+                                return true;
+                            }
+                            event.preventDefault();
+                            window.addACode(event.target.value);
+                            event.target.value = '';
+                            return false;
+                        }
+                    );
+                }
+            );
+        })();
+        </script>
+        <apex:actionFunction action="{!addCode}" name="addACode" reRender="output">
+            <apex:param name="code" assignTo="{!code}" value="" />
+        </apex:actionFunction>
+        <input id="scanner" />
+        <apex:dataTable id="output" value="{!codes}" var="item">
+            <apex:column title="Codes" value="{!item}" />
+        </apex:dataTable>
+    </apex:form>
+</apex:page>

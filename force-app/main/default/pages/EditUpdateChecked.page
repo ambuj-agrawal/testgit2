@@ -1,0 +1,17 @@
+<apex:page controller="checkBoxEdit" >
+    <apex:form >
+        <apex:pageblock id="pb">
+            <apex:pageblockTable value="{!wrapList}" var="w" >
+                <apex:column >              
+                    <apex:inputCheckbox value="{!w.isEdit}">
+                        <apex:actionSupport event="onchange" reRender="pb"/>    
+                     </apex:inputCheckbox>              
+                </apex:column>
+                <apex:column >
+                    <apex:outputText value="{!w.cont.email}" rendered="{!w.isEdit == False}"></apex:outputText>
+                    <apex:inputText value="{!w.cont.email}" rendered="{!w.isEdit == True}"/>               
+                </apex:column>    
+            </apex:pageblockTable>      
+        </apex:pageblock>
+    </apex:form>   
+</apex:page>

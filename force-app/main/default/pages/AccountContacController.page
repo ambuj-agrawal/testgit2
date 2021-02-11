@@ -1,0 +1,35 @@
+<apex:page controller="AccountContactController">
+    <apex:form >
+    <apex:actionstatus id="counterStatus">
+            <apex:facet name="start"> 
+                <div class="waitingSearchDiv" id="el_loading" style="background-color: #fbfbfb; height:100%;opacity:0.65;width:100%;">   
+                <div class="waitingHolder" style="top: 100px; width: 91px;">    
+                <img class="waitingImage" src="/img/loading.gif" title="Please Wait..." />   
+                <span class="waitingDescription">Loading...</span> 
+                </div>
+                </div>
+            </apex:facet>
+        </apex:actionstatus>
+       <apex:outputPanel id="ParentPanel">
+       <table cellpadding="5" style="border: 1px solid black">
+           <apex:repeat value="{!acc}" var="ac">
+           <tr style="border: 1px solid black">
+               <td style="border: 1px solid black">{!ac.name}</td>
+               <td style="border: 1px solid black">
+               <apex:commandButton status="counterStatus" value="Show Contacts" action="{!ChangeStatus}" reRender="ParentPanel">
+               <apex:param name="param1" assignTo="{!selectedContact}" value="{!ac.id}"/> 
+               </apex:commandButton>
+               </td>
+           </tr>
+           <apex:repeat value="{!ac.contacts}" var="cnt" rendered="{!mapset[ac.id]}">
+           <tr style="border: 1px solid black">
+           <td style="border: 1px solid black">{!cnt.Name}</td>
+           <td style="border: 1px solid black">{!cnt.Email}</td>
+           </tr>
+           </apex:repeat>
+           </apex:repeat>
+       </table>
+       </apex:outputPanel>
+    </apex:form>/>
+
+</apex:page>

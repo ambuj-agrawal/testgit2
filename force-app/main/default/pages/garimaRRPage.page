@@ -1,0 +1,669 @@
+<apex:page DocType="HTML" StandardStylesheets="FALSE" sidebar="false" showHeader="false">
+  <apex:form >
+      <html>
+  
+        <!-- Mirrored from webforms.niit-mts.com/RR/home.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 25 Nov 2017 13:07:43 GMT -->
+        <head>
+            <title>Home</title>
+            <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+            <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+            <meta name="apple-mobile-web-app-capable" content="yes"/>
+            
+            <script type="text/javascript">
+              $axure.utils.getTransparentGifPath = function() { return 'resources/images/transparent.gif'; };
+              $axure.utils.getOtherPath = function() { return 'resources/Other.html'; };
+              $axure.utils.getReloadPath = function() { return 'resources/reload.html'; };
+            </script>
+          </head>
+          
+          <style>
+          body {
+          margin:0px;
+          background-color:rgba(0, 0, 204, 0.0980392156862745);
+          background-image:none;
+          position:static;
+          left:auto;
+          width:1095px;
+          margin-left:0;
+          margin-right:0;
+          text-align:left;
+        }
+        #base {
+          position:absolute;
+          z-index:0;
+        }
+        #u0_div {
+          border-width:0px;
+          position:absolute;
+          left:0px;
+          top:0px;
+          width:1024px;
+          height:803px;
+          background:inherit;
+          background-color:rgba(255, 255, 255, 1);
+          box-sizing:border-box;
+          border-width:1px;
+          border-style:solid;
+          border-color:rgba(0, 0, 0, 1);
+          border-radius:0px;
+          -moz-box-shadow:none;
+          -webkit-box-shadow:none;
+          box-shadow:none;
+          font-family:'Calibri';
+          font-weight:400;
+          font-style:normal;
+        }
+        #u0 {
+          border-width:0px;
+          position:absolute;
+          left:71px;
+          top:62px;
+          width:1024px;
+          height:803px;
+          font-family:'Calibri';
+          font-weight:400;
+          font-style:normal;
+        }
+        #u0_text {
+          border-width:0px;
+          position:absolute;
+          left:0px;
+          top:0px;
+          width:0px;
+          visibility:hidden;
+          word-wrap:break-word;
+        }
+        #u1_div {
+          border-width:0px;
+          position:absolute;
+          left:0px;
+          top:0px;
+          width:1000px;
+          height:103px;
+          background:inherit;
+          background-color:rgba(255, 255, 255, 0);
+          border:none;
+          border-radius:0px;
+          -moz-box-shadow:none;
+          -webkit-box-shadow:none;
+          box-shadow:none;
+          font-family:'Calibri Bold', 'Calibri Regular', 'Calibri';
+          font-style:normal;
+          font-size:16px;
+        }
+        #u1 {
+          border-width:0px;
+          position:absolute;
+          left:80px;
+          top:330px;
+          width:1000px;
+          height:103px;
+          font-family:'Calibri Bold', 'Calibri Regular', 'Calibri';
+          font-style:normal;
+          font-size:16px;
+        }
+        #u1_text {
+          border-width:0px;
+          position:absolute;
+          left:0px;
+          top:0px;
+          width:1000px;
+          word-wrap:break-word;
+        }
+        #u2 {
+          border-width:0px;
+          position:absolute;
+          left:0px;
+          top:0px;
+          width:0px;
+          height:0px;
+        }
+        #u3 {
+          border-width:0px;
+          position:absolute;
+          left:80px;
+          top:608px;
+          width:771px;
+          height:38px;
+          font-family:'Calibri';
+          font-weight:400;
+          font-style:normal;
+          font-size:16px;
+        }
+        #u3_text {
+          border-width:0px;
+          position:absolute;
+          left:16px;
+          top:0px;
+          width:753px;
+          word-wrap:break-word;
+        }
+        #u3_input {
+          border-width:0px;
+          position:absolute;
+          left:-3px;
+          top:-2px;
+        }
+        #u4 {
+          border-width:0px;
+          position:absolute;
+          left:80px;
+          top:579px;
+          width:771px;
+          height:19px;
+          font-family:'Calibri';
+          font-weight:400;
+          font-style:normal;
+          font-size:16px;
+        }
+        #u4_text {
+          border-width:0px;
+          position:absolute;
+          left:16px;
+          top:0px;
+          width:753px;
+          word-wrap:break-word;
+        }
+        #u4_input {
+          border-width:0px;
+          position:absolute;
+          left:-3px;
+          top:-2px;
+        }
+        #u5 {
+          border-width:0px;
+          position:absolute;
+          left:80px;
+          top:552px;
+          width:771px;
+          height:19px;
+          font-family:'Calibri';
+          font-weight:400;
+          font-style:normal;
+          font-size:16px;
+        }
+        #u5_text {
+          border-width:0px;
+          position:absolute;
+          left:16px;
+          top:0px;
+          width:753px;
+          word-wrap:break-word;
+        }
+        #u5_input {
+          border-width:0px;
+          position:absolute;
+          left:-3px;
+          top:-2px;
+        }
+        #u6 {
+          border-width:0px;
+          position:absolute;
+          left:80px;
+          top:525px;
+          width:771px;
+          height:19px;
+          font-family:'Calibri';
+          font-weight:400;
+          font-style:normal;
+          font-size:16px;
+        }
+        #u6_text {
+          border-width:0px;
+          position:absolute;
+          left:16px;
+          top:0px;
+          width:753px;
+          word-wrap:break-word;
+        }
+        #u6_input {
+          border-width:0px;
+          position:absolute;
+          left:-3px;
+          top:-2px;
+        }
+        #u7_div {
+          border-width:0px;
+          position:absolute;
+          left:0px;
+          top:0px;
+          width:436px;
+          height:39px;
+          background:inherit;
+          background-color:rgba(255, 255, 255, 0);
+          border:none;
+          border-radius:0px;
+          -moz-box-shadow:none;
+          -webkit-box-shadow:none;
+          box-shadow:none;
+          font-family:'Calibri Bold', 'Calibri Regular', 'Calibri';
+          font-weight:700;
+          font-style:normal;
+          font-size:19px;
+        }
+        #u7 {
+          border-width:0px;
+          position:absolute;
+          left:80px;
+          top:281px;
+          width:436px;
+          height:39px;
+          font-family:'Calibri Bold', 'Calibri Regular', 'Calibri';
+          font-weight:700;
+          font-style:normal;
+          font-size:19px;
+        }
+        #u7_text {
+          border-width:0px;
+          position:absolute;
+          left:0px;
+          top:0px;
+          width:436px;
+          word-wrap:break-word;
+        }
+        #u8_div {
+          border-width:0px;
+          position:absolute;
+          left:0px;
+          top:0px;
+          width:436px;
+          height:39px;
+          background:inherit;
+          background-color:rgba(255, 255, 255, 0);
+          border:none;
+          border-radius:0px;
+          -moz-box-shadow:none;
+          -webkit-box-shadow:none;
+          box-shadow:none;
+          font-family:'Calibri Bold', 'Calibri Regular', 'Calibri';
+          font-weight:700;
+          font-style:normal;
+          font-size:19px;
+        }
+        #u8 {
+          border-width:0px;
+          position:absolute;
+          left:80px;
+          top:472px;
+          width:436px;
+          height:39px;
+          font-family:'Calibri Bold', 'Calibri Regular', 'Calibri';
+          font-weight:700;
+          font-style:normal;
+          font-size:19px;
+        }
+        #u8_text {
+          border-width:0px;
+          position:absolute;
+          left:0px;
+          top:0px;
+          width:436px;
+          word-wrap:break-word;
+        }
+        #u9_img {
+          border-width:0px;
+          position:absolute;
+          left:0px;
+          top:0px;
+          width:1000px;
+          height:186px;
+        }
+        #u9 {
+          border-width:0px;
+          position:absolute;
+          left:80px;
+          top:85px;
+          width:1000px;
+          height:186px;
+          font-family:'Calibri';
+          font-weight:400;
+          font-style:normal;
+        }
+        #u9_text {
+          border-width:0px;
+          position:absolute;
+          left:0px;
+          top:0px;
+          width:0px;
+          visibility:hidden;
+          word-wrap:break-word;
+        }
+        
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                      /* so the window resize fires within a frame in IE7 */
+        html, body {
+            height: 100%;
+        }
+        
+        a {
+            color: inherit;
+        }
+        
+        p {
+            margin: 0px;
+            text-rendering: optimizeLegibility;
+            font-feature-settings: "kern" 1;
+            -webkit-font-feature-settings: "kern";
+            -moz-font-feature-settings: "kern";
+            -moz-font-feature-settings: "kern=1";
+            font-kerning: normal;
+        }
+        
+        iframe {
+            background: #FFFFFF;
+        }
+        
+        /* to match IE with C, FF */
+        input {
+            padding: 1px 0px 1px 0px;
+            box-sizing: border-box;
+            -moz-box-sizing: border-box;
+        }
+        
+        textarea {
+            margin: 0px;
+            box-sizing: border-box;
+            -moz-box-sizing: border-box;
+        }
+        
+        div.intcases {
+            font-family: arial; 
+            font-size: 12px;
+            text-align:left; 
+            border:1px solid #AAA; 
+            background:#FFF none repeat scroll 0% 0%; 
+            z-index:9999; 
+            visibility:hidden; 
+            position:absolute;
+            padding: 0px;
+            border-radius: 3px;
+            white-space: nowrap;
+        }
+        
+        div.intcaselink {
+            cursor: pointer;
+            padding: 3px 8px 3px 8px;
+            margin: 5px;
+            background:#EEE none repeat scroll 0% 0%; 
+            border:1px solid #AAA;
+            border-radius: 3px;
+        }
+        
+        div.refpageimage {
+            position: absolute;
+            left: 0px;
+            top: 0px;
+            font-size: 0px;
+            width: 16px;
+            height: 16px;
+            cursor: pointer;
+            background-image: url(images/newwindow.gif);
+            background-repeat: no-repeat;
+        }
+        
+        div.annnoteimage {
+            position: absolute;
+            left: 0px;
+            top: 0px;
+            font-size: 0px;
+            /*width: 16px;
+            height: 12px;*/
+            cursor: help;
+            /*background-image: url(images/note.gif);*/
+            /*background-repeat: no-repeat;*/
+            width: 13px;
+            height: 12px;
+            padding-top: 1px;
+            text-align: center;
+            background-color: #138CDD;
+            -moz-box-shadow: 1px 1px 3px #aaa;
+            -webkit-box-shadow: 1px 1px 3px #aaa;
+            box-shadow: 1px 1px 3px #aaa;
+        }
+        
+        div.annnoteline {
+            display: inline-block;
+            width: 9px;
+            height: 1px;
+            border-bottom: 1px solid white;
+            margin-top: 1px;
+        }
+        
+        div.annnotelabel {
+            position: absolute;
+            left: 0px;
+            top: 0px;
+            font-family: Helvetica,Arial;
+            font-size: 10px;
+            /*border: 1px solid rgb(166,221,242);*/
+            cursor: help;
+            /*background:rgb(0,157,217) none repeat scroll 0% 0%;*/ 
+            padding: 1px 3px 1px 3px;
+            white-space: nowrap;
+            color: white;
+            
+            background-color: #138CDD;
+            -moz-box-shadow: 1px 1px 3px #aaa;
+            -webkit-box-shadow: 1px 1px 3px #aaa;
+            box-shadow: 1px 1px 3px #aaa;
+        }
+        
+        .annotation {
+            font-size: 12px;
+            padding-left: 2px;
+            margin-bottom: 5px;
+        }
+        
+        .annotationName {
+            /*font-size: 13px;
+            font-weight: bold;
+            margin-bottom: 3px;
+            white-space: nowrap;*/
+        
+            font-family: 'Trebuchet MS';
+            font-size: 14px;
+            font-weight: bold;
+            margin-bottom: 5px;
+            white-space: nowrap;
+        }
+        
+        .annotationValue {
+            font-family: Arial, Helvetica, Sans-Serif;
+            font-size: 12px;
+            color: #4a4a4a;
+            line-height: 21px;
+            margin-bottom: 20px;
+        }
+        
+        .noteLink {
+            text-decoration: inherit;
+            color: inherit;
+        }
+        
+        .noteLink:hover {
+            background-color: white;
+        }
+        
+        /* this is a fix for the issue where dialogs jump around and takes the text-align from the body */
+        .dialogFix {
+            position:absolute;
+            text-align:left;
+            border: 1px solid #8f949a;
+        }
+        
+        
+        @keyframes pulsate {
+          from {
+            box-shadow: 0 0 10px #15d6ba;
+          }
+          to {
+            box-shadow: 0 0 20px #15d6ba;
+          }
+        }
+        
+        @-webkit-keyframes pulsate {
+          from {
+            -webkit-box-shadow: 0 0 10px #15d6ba;
+            box-shadow: 0 0 10px #15d6ba;
+          }
+          to {
+            -webkit-box-shadow: 0 0 20px #15d6ba;
+            box-shadow: 0 0 20px #15d6ba;
+          }
+        }
+         
+        @-moz-keyframes pulsate {
+          from {
+            -moz-box-shadow: 0 0 10px #15d6ba;
+            box-shadow: 0 0 10px #15d6ba;
+          }
+          to {
+            -moz-box-shadow: 0 0 20px #15d6ba;
+            box-shadow: 0 0 20px #15d6ba;
+          }
+        }
+        
+        .legacyPulsateBorder {
+            /*border: 5px solid #15d6ba;
+            margin: -5px;*/
+            -moz-box-shadow: 0 0 10px 3px #15d6ba;
+            box-shadow: 0 0 10px 3px #15d6ba;
+        }
+        
+        .pulsateBorder {
+          animation-name: pulsate;
+          animation-timing-function: ease-in-out;
+          animation-duration: 0.9s;
+          animation-iteration-count: infinite;
+          animation-direction: alternate;
+          
+          -webkit-animation-name: pulsate;
+          -webkit-animation-timing-function: ease-in-out;
+          -webkit-animation-duration: 0.9s;
+          -webkit-animation-iteration-count: infinite;
+          -webkit-animation-direction: alternate;
+        
+          -moz-animation-name: pulsate;
+          -moz-animation-timing-function: ease-in-out;
+          -moz-animation-duration: 0.9s;
+          -moz-animation-iteration-count: infinite;
+          -moz-animation-direction: alternate;
+        }
+        
+        .ax_default_hidden, .ax_default_unplaced{
+            display: none;
+            visibility: hidden;
+        }
+        
+        .widgetNoteSelected {
+            -moz-box-shadow: 0 0 10px 3px #138CDD;
+            box-shadow: 0 0 10px 3px #138CDD;
+            /*-moz-box-shadow: 0 0 20px #3915d6;
+            box-shadow: 0 0 20px #3915d6;*/
+            /*border: 3px solid #3915d6;*/
+            /*margin: -3px;*/
+        }
+        
+        
+        .singleImg {
+            display: none;
+            visibility: hidden;
+        }
+
+          
+          </style>
+          <body>
+            <div id="base" class="">
+        
+              <!-- Unnamed (Rectangle) -->
+              <div id="u0" class="ax_default box_1">
+                <div id="u0_div" class=""></div>
+              </div>
+        
+              <!-- Unnamed (Rectangle) -->
+              <div id="u1" class="ax_default paragraph">
+                <div id="u1_div" class=""></div>
+                <div id="u1_text" class="text ">
+                  <p><span style="font-family:'Calibri Bold', 'Calibri Regular', 'Calibri';font-weight:700;"><br/></span></p><p><span style="font-family:'Calibri Bold', 'Calibri Regular', 'Calibri';font-weight:700;">Note:</span><span style="font-family:'Calibri';font-weight:400;">&nbsp; ‘Rolls-Royce and its third party training providers collect personal information from you in order to manage learning services. The information you provide will help us to capture customer requirements, record attendance at our courses, and manage Health and Safety risks during training. It may be disclosed to other third parties, outside of your own geographic region, for the purpose of provision of such training services and the associated management of these. Your information will be processed and disclosed in line with any applicable data privacy law.</span></p><p><span style="font-family:'Calibri';font-weight:400;"><br/></span></p><p><span style="font-family:'Calibri';font-weight:400;"><br/></span></p><p><span style="font-family:'Calibri';font-weight:400;"><br/></span></p><p><span style="font-family:'Calibri';font-weight:400;"><br/></span></p><p><span style="font-family:'Calibri';font-weight:400;"><br/></span></p><p><span style="font-family:'Calibri';font-weight:400;"><br/></span></p><p><span style="font-family:'Calibri';font-weight:400;"><br/></span></p>
+                </div>
+              </div>
+        
+              <!-- Unnamed (Group) -->
+              <div id="u2" class="ax_default" data-left="80" data-top="525" data-width="771" data-height="121">
+        
+                <!-- Unnamed (Radio Button) -->
+                <div id="u3" class="ax_default radio_button">
+                  <label for="u3_input" style="position: absolute;">
+                    <div id="u3_text" class="text ">
+                      <p><span>&nbsp;To design and develop a New Course/New Product Introduction. Additional information might be needed and you will be contacted.</span></p>
+                    </div>
+                  </label>
+                  <input id="u3_input" type="radio" value="radio" name="u3" onclick="location.href='/apex/garimaRRPage1'"/>
+                </div>
+        
+                <!-- Unnamed (Radio Button) -->
+                <div id="u4" class="ax_default radio_button">
+                  <label for="u4_input" style="position: absolute;">
+                    <div id="u4_text" class="text ">
+                      <p><span>&nbsp;An Existing MyLearning course to be run for a target group</span></p>
+                    </div>
+                  </label>
+                  <input id="u4_input" type="radio" value="radio" name="u4" onclick="location.href='/apex/garimaRRPage1'"/>
+                </div>
+        
+                <!-- Unnamed (Radio Button) -->
+                <div id="u5" class="ax_default radio_button">
+                  <label for="u5_input" style="position: absolute;">
+                    <div id="u5_text" class="text ">
+                      <p><span>&nbsp;To Book a Trainer/ Facilitator</span></p>
+                    </div>
+                  </label>
+                  <input id="u5_input" type="radio" value="radio" name="u5" onclick="location.href='/apex/garimaRRPage1'"/>
+                </div>
+        
+                <!-- Unnamed (Radio Button) -->
+                <div id="u6" class="ax_default radio_button">
+                  <label for="u6_input" style="position: absolute;">
+                    <div id="u6_text" class="text ">
+                      <p><span>&nbsp;To Attend a course that the General Public are attending also e.g. Seminar, Conference, Training</span></p>
+                    </div>
+                  </label>
+                  <input id="u6_input" type="radio" value="radio" name="u6" onclick="location.href='/apex/garimaRRPage1'"/>
+                </div>
+              </div>
+        
+              <!-- Unnamed (Rectangle) -->
+              <div id="u7" class="ax_default paragraph">
+                <div id="u7_div" class=""></div>
+                <div id="u7_text" class="text ">
+                  <p><span><br/></span></p><p><span>Learning Request Form</span></p>
+                </div>
+              </div>
+        
+              <!-- Unnamed (Rectangle) -->
+              <div id="u8" class="ax_default paragraph">
+                <div id="u8_div" class=""></div>
+                <div id="u8_text" class="text ">
+                  <p><span>LRF I would like to Submit:</span></p>
+                </div>
+              </div>
+        
+              <!-- Unnamed (Image) -->
+              <div id="u9" class="ax_default image">
+                <img id="u9_img" class="img " src="https://ambuj-dev-ed--c.ap6.content.force.com/servlet/servlet.ImageServer?id=0150K000005nLVG&oid=00D28000001zXzx&lastMod=1511617255000"/>
+              </div>
+            </div>
+          </body>
+        
+        <!-- Mirrored from webforms.niit-mts.com/RR/home.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 25 Nov 2017 13:07:57 GMT -->
+        </html>
+  
+  </apex:form>
+</apex:page>

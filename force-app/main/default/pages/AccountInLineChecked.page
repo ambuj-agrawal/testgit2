@@ -1,0 +1,52 @@
+<apex:page standardController="Account" extensions="AccountInLineCheckedController" id="pp">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
+        <script>
+            $(document).ready(function(){
+                $("#checkAll").click(function(){
+                    $('input:checkbox').not(this).prop('checked', this.checked);
+                });
+            });
+        </script>
+
+    <apex:form >
+        <apex:pagemessages />
+            <apex:actionstatus id="counterStatus">
+                <apex:facet name="start">
+                    <div class="waitingSearchDiv" id="el_loading" style="background-color: #fbfbfb; height:100%;opacity:0.65;width:100%;">
+                        <div class="waitingHolder" style="top: 100px; width: 91px;">
+                            <img class="waitingImage" src="/img/loading.gif" title="Please Wait..." />
+                                <span class="waitingDescription">Loading...</span>
+                        </div>
+                    </div>
+                </apex:facet>
+            </apex:actionstatus>
+         <apex:pageBlock id="pb">
+            <apex:pageBlockTable value="{!listWrapper}" var="lw" id="ab">
+                <apex:column >
+                    <apex:facet name="header"><input type="checkbox" id="checkAll"/></apex:facet>
+                    <apex:inputCheckbox value="{!lw.checked}" styleclass="checkedone">
+                        <apex:actionSupport status="counterStatus" event="onchange" reRender="pb"/>
+                    </apex:inputCheckbox>
+                </apex:column>
+                 <apex:column >
+                    <apex:facet name="header">Name</apex:facet>
+                    <apex:outputText value="{!lw.cnt.Name}" rendered="{!lw.checked== False}"/>
+                    <apex:inputText value="{!lw.cnt.FirstName}" rendered="{!lw.checked== True}"/>
+                    <apex:inputText value="{!lw.cnt.LastName}" rendered="{!lw.checked== True}"/>
+                 </apex:column>
+                 <apex:column >
+                    <apex:facet name="header">Email</apex:facet>
+                    <apex:inputText value="{!lw.cnt.Email}" rendered="{!lw.checked== True}"/>
+                    <apex:outputText value="{!lw.cnt.Email}" rendered="{!lw.checked== False}"/>
+                 </apex:column>
+                 <apex:column >
+                    <apex:commandButton value="Update" action="{!Save}" id="saveButton" status="counterStatus" rendered="{!lw.checked}" reRender="pb"/>
+                 </apex:column>
+            </apex:pageBlockTable>
+            <apex:pageBlockButtons >
+                <apex:commandButton value="Delete" action="{!del}" reRender="pb" status="counterStatus"/>
+            </apex:pageBlockButtons>
+        </apex:pageBlock>
+    </apex:form>
+</apex:page>

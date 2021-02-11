@@ -1,0 +1,28 @@
+<apex:page standardController="Account" extensions="ShowAllPageClass">
+    <apex:form >
+        <apex:pageBlock >
+                <!--<apex:pageblockTable value="{!con}" var="co">
+                <apex:column value="{!co.FirstName}"/>
+                <apex:column value="{!co.LastName}"/>
+                <apex:column value="{!co.Phone}"/>
+                <apex:column value="{!co.Email}"/>
+                </apex:pageblockTable>*/ -->
+            <!--<apex:pageBlockSection>-->
+            <table>
+                
+                <tr><th>First Name<br/>Last Name<br/>Phone<br/>Email<br/></th>
+                    <apex:repeat value="{!con}" var="co">
+                    <td>
+                        &nbsp;<apex:outputText value="{!co.FirstName}"/><br/>
+                        &nbsp;<apex:outputText value="{!co.LastName}"/><br/>
+                        &nbsp;<apex:outputText value="{!co.Phone}"/><br/>
+                        &nbsp;<apex:outputText value="{!co.Email}"/>  <br/>
+                    </td>
+                    </apex:repeat>
+                </tr>
+            </table>        
+            <apex:commandButton value="Matched" action="{!Match}"/>
+            <!--</apex:pageBlockSection>-->
+        </apex:pageBlock>
+    </apex:form>
+</apex:page>

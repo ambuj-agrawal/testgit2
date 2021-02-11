@@ -1,0 +1,32 @@
+<apex:page controller="ContactView">
+   <style>
+   h{
+   color:blue; text-decoration:none}
+   </style>
+    <apex:form id="myform">
+    <apex:pageBlock title="Contact list" id="contact_list">
+        <apex:pageBlockTable value="{!contact}" var="ct">
+        <apex:column headerValue="Action">
+            <apex:outputLink value="{!URLFOR($Action.Contact.Edit, ct.id)}" ><h>Edit</h> </apex:outputLink> &nbsp;| &nbsp;
+            <apex:outputLink value="{!URLFOR($Action.Contact.View, ct.id)}" ><h>View</h></apex:outputLink> &nbsp;| &nbsp;
+            <apex:outputLink value="{!URLFOR($Action.Contact.Delete, ct.id)}" ><h>Delete</h></apex:outputLink>
+        </apex:column>
+        <apex:column headerValue="Action with Commandlink">
+        <apex:commandLink value="View" action="{!redirectTo}" style="color: blue;text-decoration:none">
+        <apex:param name="Param1" assignTo="{!selectedContactId}" value="{!ct.Id}"/>
+        </apex:commandLink> &nbsp;| &nbsp;
+        <apex:commandLink value="Edit" action="{!redirectTo2}" style="color: blue; text-decoration:none">
+        <apex:param name="Param2" assignTo="{!selectedContactId}" value="{!ct.Id}"/>
+        </apex:commandLink> &nbsp;| &nbsp;
+        <apex:commandLink value="Delete" action="{!redirectTo3}" style="color: blue; text-decoration:none">
+        <apex:param name="Param3" assignTo="{!selectedContactId}" value="{!ct.Id}" />
+        </apex:commandLink>
+        </apex:column>
+        <apex:column value="{!ct.FirstName}"/>
+        <apex:column value="{!ct.LastName}"/>
+        <apex:column value="{!ct.Phone}"/>
+        <apex:column value="{!ct.Email}"/>
+    </apex:pageBlockTable>
+    </apex:pageBlock>
+    </apex:form>
+</apex:page>

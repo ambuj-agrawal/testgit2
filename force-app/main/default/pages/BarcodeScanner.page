@@ -1,0 +1,173 @@
+<apex:page applyHtmlTag="false" showheader="false" sidebar="false" controller="BarcodeSF1Ctrl">
+    <head>
+        <title>BarcodeReader</title>
+        <apex:stylesheet value="{!URLFOR($Resource.alertify, 'alertify.js-0.3.11/themes/alertify.core.css')}"/>
+        <apex:stylesheet value="{!URLFOR($Resource.alertify, 'alertify.js-0.3.11/themes/alertify.default.css')}"/>
+        <apex:includeScript value="{!URLFOR($Resource.alertify, 'alertify.js-0.3.11/lib/alertify.min.js')}"/>
+    </head>
+    <body>
+        <div>
+        <img width="320" height="240" src="" id="picture" style="border:10px groove silver" />
+        </div>
+        <input id="Take-Picture" type="file" accept="image/*;capture=camera"/>
+        <p>If the picture looks clear, click the button to decode</p>
+        <button onclick="DecodeBar();">Decode</button>
+        <p id="textbit"></p>
+        <button id="navigate" style="visibility:hidden;" onclick="navigate();">Go to record</button><br/>
+        <button style="width:100%" onclick="window.location.reload();">Restart</button>
+        <script type="text/javascript">
+            var startTime;
+            var interval;
+            var recordId;
+        
+            var takePicture = document.querySelector("#Take-Picture"),
+            showPicture = document.querySelector("#picture");
+            
+            Result = document.querySelector("#textbit");
+            Canvas = document.createElement("canvas");
+            Canvas.width=640;
+            Canvas.height=480;
+            var resultArray = [];
+            ctx = Canvas.getContext("2d");
+            
+            showPicture.onload = function(){
+                    ctx.drawImage(showPicture,0,0,Canvas.width,Canvas.height);
+                  };
+                  
+            var workerCount = 0;
+            
+            // function called when a worker has finished decoding (or failed!)
+            function receiveMessage(e) {
+                // capture how long this has taken
+                var elapsedTime=new Date() - startTime;
+                if(e.data.success === "log") {
+                    console.log(e.data.result);
+                    return;
+                }
+                workerCount--;
+                if(e.data.success){
+                
+                    // stop the "working" messages
+                    clearInterval(interval);
+                    var tempArray = e.data.result;
+                    for(var i = 0; i < tempArray.length; i++) {
+                        if(resultArray.indexOf(tempArray[i]) == -1) {
+                            resultArray.push(tempArray[i]);
+                        }
+                    }
+                    Result.innerHTML=resultArray.join("<br />") + '<br/>Decoded in ' + elapsedTime + ' milliseconds';
+                    
+                    // notify the user of the success
+                    alertify.success('Decoded barcode');
+                    
+                    // execute the controller method to figure out the Salesforce account record
+                    alertify.log('Retrieving record');
+                    
+                    BarcodeSF1Ctrl.getRecordFromBarcode(resultArray[0], recordRetrieved, {escape: false})
+                     
+                }else{
+                    // if all workers have finished and there are no results, tell the user we failed
+                    if(resultArray.length === 0 && workerCount === 0) {
+                    
+                        // stop the "working" messages
+                        clearInterval(interval);
+                        Result.innerHTML="Decoding failed in " + elapsedTime + ' milliseconds';
+                        
+                        // notify the user of the failure
+                        alertify.error('Unable to decode');
+                        
+                    }
+                }
+            }
+            var DecodeWorker = new Worker("{!URLFOR($Resource.DecodeWorker)}");
+            var RightWorker = new Worker("{!URLFOR($Resource.DecodeWorker)}");
+            var LeftWorker = new Worker("{!URLFOR($Resource.DecodeWorker)}");
+            var FlipWorker = new Worker("{!URLFOR($Resource.DecodeWorker)}");
+            DecodeWorker.onmessage = receiveMessage;
+            RightWorker.onmessage = receiveMessage;
+            LeftWorker.onmessage = receiveMessage;
+            FlipWorker.onmessage = receiveMessage;
+            if(takePicture && showPicture) {
+                takePicture.onchange = function (event) {
+                    var files = event.target.files
+                    if (files && files.length > 0) {
+                        file = files[0];
+                        try {
+                            var URL = window.URL || window.webkitURL;
+                            var imgURL = URL.createObjectURL(file);
+                            showPicture.src = imgURL;
+                            URL.revokeObjectURL(imgURL);
+                        }
+                        catch (e) {
+                            try {
+                                var fileReader = new FileReader();
+                                fileReader.onload = function (event) {
+                                    showPicture.src = event.target.result;
+                                };
+                                fileReader.readAsDataURL(file);
+                            }
+                            catch (e) {
+                                Result.innerHTML = "Neither createObjectURL or FileReader are supported";
+                            }
+                        }
+                    }
+                };
+            }
+            function DecodeBar(){
+                    // start the timer for the decoding
+                    startTime=new Date();
+                    Result.innerHTML="";
+                    resultArray = [];
+                    workerCount = 4;
+                    // notify the user something is happening
+                    alertify.log('Launching workers');
+                    
+                    // start the interval timer to output a message every 5 seconds
+                    interval=setInterval(function(){alertify.log('Still working');},5000);
+                    
+                    DecodeWorker.postMessage({pixels: ctx.getImageData(0,0,Canvas.width,Canvas.height).data, cmd: "normal"});
+                    RightWorker.postMessage({pixels: ctx.getImageData(0,0,Canvas.width,Canvas.height).data, cmd: "right"});
+                    LeftWorker.postMessage({pixels: ctx.getImageData(0,0,Canvas.width,Canvas.height).data, cmd: "left"});
+                    FlipWorker.postMessage({pixels: ctx.getImageData(0,0,Canvas.width,Canvas.height).data, cmd: "flip"});
+            }
+            
+            // callback method when the record has been retrieved from the controller
+            function recordRetrieved(result, event)
+            {
+                if ( (!event) || (event.status) ) 
+                {
+                    if (-1!=result.indexOf('Error'))
+                    {
+                        alertify.error(result);
+                    }
+                    else
+                    {
+                        // notify the user and render the button
+                        alertify.success("Found account");
+                        document.querySelector("#navigate").style.visibility='visible';
+                        recordId=result;
+                    }
+                }       
+                else if (event.type === 'exception')
+                {
+                    alertify.error(result);
+                }
+            }
+            
+            // method invoked when the user clicks the 'Go to record' button - determines whether we are in
+            // Salesforce1 world and carries out the appropriate navigation
+            function navigate()
+            {
+                            
+                if ( (typeof sforce != 'undefined') && (sforce != null) ) 
+                {
+                    sforce.one.navigateToSObject(recordId);
+                }
+                else 
+                {
+                    window.location="/" + recordId;
+                }        
+            }
+        </script>
+    </body>
+</apex:page>

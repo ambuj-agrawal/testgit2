@@ -1,0 +1,154 @@
+<apex:page Controller="JqueryAssignment" tabStyle="Contact" showHeader="false" id="full">
+    <apex:sectionHeader title="Contacts" subtitle="Home" />
+    <apex:actionstatus id="counterStatus">
+        <apex:facet name="start">
+            <div class="waitingSearchDiv" id="el_loading" style="background-color: #fbfbfb; height:100%;opacity:0.65;width:100%;">
+                <div class="waitingHolder" style="top: 100px; width: 91px;">
+                <img class="waitingImage" src="/img/loading.gif" title="Please Wait..." />
+                <span class="waitingDescription">Loading...</span>
+                </div>
+            </div>
+        </apex:facet>
+    </apex:actionstatus>
+    
+    <apex:form id="form">
+    <apex:pageMessages id="msg"/>
+    <!--<apex:outputPanel id="panel">-->
+    <head>
+        <apex:includescript value="https://code.jquery.com/jquery-2.2.4.js" / >
+        
+        <!--<apex:includescript value="https://code.jquery.com/ui/1.12.1/jquery-ui.js"/>-->
+        <apex:includescript value="//cdn.datatables.net/1.10.4/js/jquery.dataTables.min.js" />
+        <apex:stylesheet value="//cdn.datatables.net/1.10.4/css/jquery.dataTables.css" />
+        <apex:stylesheet value="{!URLFOR($Resource.jQuery, '/jquery-ui-1.12.1/jquery-ui.min.css')}" />  
+        <apex:includeScript value="{!URLFOR($Resource.jQuery, '/jquery-ui-1.12.1/jquery-ui.min.js')}" />
+        <script >
+            j$ = jQuery.noConflict();
+            j$(document).ready( function () {
+                    var contactTable = j$('[id$="contacttable"]').DataTable({   
+                });   
+            });
+            
+            function blob()
+            {
+              alert("hii");
+              j$("#spnName2").html(j$("#fileupload2").val());
+            }
+            j$(function () {
+               j$("#fileupload2").change(function () {
+                   j$("#spnName1").html(j$("#fileupload2").val().substring(j$("#fileupload2").val().lastIndexOf('\\') + 1));
+               });
+               
+            });
+           
+           function showEditAccountDialog(contactId, ContactFirstName, phonenew, lastname){  
+                console.log('show dialog called');
+                
+              j$( "#editAccountDialog" ).dialog({  
+                   autoOpen: false,  
+                   resizable: true,  
+                   height: 240,  
+                   width: 500,  
+                   modal: true,  
+                   title: "Edit Contact: " + lastname,  
+                   buttons:{
+                        
+                        
+                        Save : function() {  
+                             if(j$('.' + contactId + '_name').val() != null && (j$('.' + contactId + '_name').val()) != 'undefined' && (j$('.' + contactId + '_name').val()).length != 0){  
+                                  ContactFirstName = j$('.' + contactId + '_name').val();  
+                             }  
+                             if(j$('.' + contactId + '_num').val() != null && (j$('.' + contactId + '_num').val()) != 'undefined' && (j$('.' + contactId + '_num').val()).length != 0){  
+                                  phonenew = j$('.' + contactId + '_num').val();  
+                             }  
+                             saveChanges(contactId, ContactFirstName, phonenew);   
+                             j$(this).dialog("close");  
+                        },  
+                        Close : function(){  
+                             j$(this).dialog("close");  
+                        }
+                        
+                   }  
+              });  
+              j$( "#editAccountDialog" ).html(buildEditDialogContent(contactId, ContactFirstName, phonenew));  
+              j$( "#editAccountDialog" ).dialog( "open" );  
+         }
+         
+         function buildEditDialogContent(contactId, ContactFirstName, phonenew){  
+              if(ContactFirstName == 'null' || ContactFirstName.length == 0) {  
+                   ContactFirstName = '';  
+              }  
+              if(phonenew == 'null' || phonenew.length == 0) {  
+                   phonenew = '';  
+              }  
+              var dialogString = '<br />';  
+              dialogString += '<div id="testing"><b>Name : </b><input class="' + contactId + '_name" type="text" value="' + ContactFirstName + '" size="45" style="float:right" /></div><br />';  
+              dialogString += '<div><b>Phone : </b><input class="' + contactId + '_num" type="number" value="' + phonenew +'" size="45" style="float:right;width: 296px;" /></div><br />'; 
+              dialogString += '<div><input style="display:block" type="file" id="fileupload1" /><input type="button" class="button" id="btnUpload" onclick="CaptureSignature()" value="Upload"/><span id="spnName"></span>';
+              console.log('attachment.body');
+              
+              return dialogString;  
+         }
+         function CaptureSignature() {
+                 console.log('---before----show dialog called');
+                j$("#fileupload1").ready(function () {
+                console.log('---click---show dialog called');
+                   j$("#spnName").html(j$("#fileupload1").val().substring(j$("#fileupload1").val().lastIndexOf('\\') + 1));
+               });
+                
+         }    
+             
+        </script>
+
+        <style>
+            #editAccountDialog{
+                background-color: #e1e0ea;
+            }
+            tr,th{
+                background-color: #c5e4ff;
+                border: 1px solid black;
+            }
+        </style>
+    </head>
+    
+    <body>
+        <div id="editAccountDialog"></div>
+        <table id="contacttable" class="display">
+            <thead>
+                <tr>
+                    <th>Account</th>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Phone</th>
+                </tr>
+            </thead>
+            <tbody>
+                <apex:repeat value="{!accountMap}" var="am">
+                    <tr>
+                        <td>{!accountMap[am].Account.Name}</td>
+                        <td>{!accountMap[am].FirstName}</td>
+                        <td><div class="editAccountLink" onclick="showEditAccountDialog('{!accountMap[am].Id}', '{!accountMap[am].FirstName}', '{!accountMap[am].Phone}', '{!accountMap[am].lastname}');" >{!accountMap[am].Lastname}</div></td>
+                        <td>{!accountMap[am].Phone}</td>
+                    </tr>
+                </apex:repeat>
+            </tbody>
+        </table>
+        
+        
+        <div><br />
+            <input style="display:none" type="file" id="fileupload2" />
+            <input type="button" class="button" id="btnUpload1" onclick='j$("#fileupload2").click()' value="Upload"/>
+            <span id="spnName1"></span>
+        </div>
+
+
+    </body>
+    <!--</apex:outputPanel>-->
+    
+        <apex:actionFunction name="saveChanges" action="{!saveChanges}" rerender="form,msg" status="counterStatus">  
+            <apex:param name="accountToEdit" assignTo="{!accountToEdit}" value="" />  
+            <apex:param name="nameNewValue" assignTo="{!firstnameNewValue}" value="" />  
+            <apex:param name="phonenewNewValue" assignTo="{!phoneNewValue}" value="" />  
+        </apex:actionFunction>
+    </apex:form>
+</apex:page>

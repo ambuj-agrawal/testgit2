@@ -1,0 +1,40 @@
+<apex:page controller="MultiselectCtrl">
+      <apex:form >
+    
+              
+<apex:pageBlock >
+    <apex:pageBlockSection >
+    <apex:outputPanel rendered="{!showPopup==false}" >
+    <apex:outputPanel styleClass="customPopup" layout="block" >
+        <!-- put your popup contents here -->
+        <!-- will be e.g. a pageBlockTable with the Users (incl checkbox to select) and a 'save' and 'cancel' button -->
+        <apex:repeat value="{!users}" var="uw">
+            
+            <apex:inputCheckbox value="{!uw.selected}"/>{!uw.u.id}
+        
+        </apex:repeat>
+    </apex:outputPanel>
+</apex:outputPanel>
+    </apex:pageBlockSection>
+</apex:pageBlock>
+
+<style type="text/css">      
+ .customPopup{            
+      background-color: white; 
+      border-style: solid; 
+      border-width: 1px;
+      left: 50%;           
+      padding:10px;           
+      position: absolute;           
+      z-index: 9;           
+       /* These are the 3 css properties you will need to tweak so the pop             
+       up displays in the center of the screen. First set the width. Then set            
+       margin-left to negative half of what the width is. You can also add            
+       the height property for a fixed size pop up.*/            
+      width: 750px;            
+      margin-left: -375px;
+      top:50px;        
+}</style>
+       
+      </apex:form>
+</apex:page>

@@ -1,0 +1,72 @@
+<aura:component controller="CampingListController">
+	
+    <aura:handler name="init" action="{!c.doInit}" value="{!this}"/>
+    
+    <aura:handler name="addItem" event="c:addItemEvent"
+   	action="{!c.handleAddItem }"/>
+    <aura:attribute name="newItem" type="Camping_Item__c"
+     default="{ 'sobjectType': 'Camping_Item__c',
+                    'Name': '',
+                    'Quantity__c': 0,
+                    'Price__c': 0,
+                    'Packed__c': false }"/>
+
+    
+    <aura:attribute name="items" type="Camping_Item__c[]"/>
+	<div aria-labelledby="newcampingform">
+        <fieldset class="slds-box slds-theme--default slds-container--small">
+  
+        <form class="slds-form--stacked">          
+            <lightning:input aura:id="campingform" label="Name"
+                             name="name"
+                             value="{!v.newItem.Name}"
+                             required="true"/> 
+            <lightning:input type="number" aura:id="itemform"  label="Quantity"
+                             name="quantity"
+                             min="1"
+                             formatter="Number"
+                             step="1"
+                             value="{!v.newItem.Quantity__c}"
+                             messageWhenRangeUnderflow="Enter a quantity that's at least 1."/>
+            <lightning:input aura:id="campingform" label="Price"
+                             name="price"
+                             formatter="currency" 
+                             value="{!v.newItem.Price__c}"
+                             />
+            <lightning:input type="checkbox" aura:id="campingform" label="Packed"  
+                             name="packed"
+                             checked="{!v.newItem.Packed__c}"/>
+            <lightning:button label="Create Item" 
+                              class="slds-m-top--medium"
+                              variant="brand"
+                              onclick="{!c.clickCreateItem}"/>
+        </form>
+      </fieldset>
+    </div>
+    
+       <!-- NEW ITEM FORM -->
+    <div class="slds-col slds-col--padded slds-p-top--large">
+
+        <c:campingListForm />
+
+    </div>
+    <!-- / NEW ITEM FORM -->    
+   
+
+    <div class="slds-card slds-p-top--medium">
+        <header class="slds-card__header">
+            <h3 class="slds-text-heading--small">Items</h3>
+        </header>
+        
+        <section class="slds-card__body">
+            <div id="list" class="row">
+                <aura:iteration items="{!v.items}" var="items">
+                    <c:campingListItem item="{!item}"/>
+                    
+                    
+                </aura:iteration>
+            </div>
+        </section>
+    </div>
+
+</aura:component>

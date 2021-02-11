@@ -1,0 +1,35 @@
+<apex:page standardController="Account" extensions="addmultipleattachmentCtrl" cache="true">
+    <apex:includeScript value="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.9.1.min.js"/>
+    
+   
+    <apex:form id="theform">
+        <apex:pageMessages ></apex:pageMessages>
+       
+        <apex:pageBlock >
+        
+
+            <apex:pageBlockTable value="{!acc}" var="attachment" id="ppp">
+                <apex:column headerValue="File Name"><apex:inputField value="{!attachment.name}"/></apex:column>
+                <!--<apex:column headerValue="File"><input type="file" value="{!attachment.body}" multiple = "true" filesize="{!attachment.BodyLength}"/></apex:column>-->
+                <apex:column headerValue="File"><apex:inputFile value="{!attachment.body}" filesize="{!attachment.BodyLength}"></apex:inputFile></apex:column>
+                <apex:column headerValue="Description"><apex:inputField value="{!attachment.description}"/></apex:column>
+                
+            
+            </apex:pageBlockTable>
+            <apex:pageblockButtons location="bottom" id="pbt">
+                <apex:actionRegion >
+                <div style="text-align:right;margin-right:30px;font-weight:bold;">
+                    <apex:commandLink value="Add Row" action="{!addRow}" reRender="ppp" immediate="true" style="color:#808000;"/>
+                           &nbsp;|&nbsp;&nbsp;
+                    <apex:commandLink value="Remove Row" action="{!removeRow}" reRender="ppp" immediate="true" style="color:#808000;"/>                
+                </div>
+                </apex:actionRegion>
+            </apex:pageblockButtons>
+            <apex:pageBlockButtons >
+                <apex:commandButton value="Save" action="{!Save}" />
+            </apex:pageBlockButtons>
+        
+        </apex:pageBlock>
+    
+    </apex:form>  
+</apex:page>

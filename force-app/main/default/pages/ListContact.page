@@ -1,0 +1,39 @@
+<apex:page StandardController="Contact" extensions="ListContactController" showHeader="false">
+   <style type="text/css">
+         .showline:hover
+         { text-decoration: underline;
+             color: blue;
+            }  
+     </style>
+     <apex:pageMessages />
+     <apex:form id="theForm">
+        <apex:pageBlock Title="ALL CONTACTS">
+          <apex:commandButton value="Save" action="{!Save}" id="SaveButton"  />
+              <apex:outputPanel layout="block" styleClass="container">   
+                    <apex:pageBlockTable value="{!Contacts}" width="100%" var="c" cellpadding="2" border="1"  rowClasses="odd,even" styleClass="tableClass" id="opp_table">
+                         <apex:column headerValue="All contact Name"  styleClass="showline">
+                              <apex:inputcheckbox value="{!c.selected}"   >
+                                  <apex:actionSupport event="onclick" action="{!getSelected}" rerender="Selected_PBS"/>
+                             </apex:inputcheckbox>&nbsp;
+                              <b>
+                                 <apex:commandLink value="{!c.con.Name}"  style="text-decoration:none;"  action="{!go}" title="for contact details">
+                                      <apex:param name="conId" value="{!c.con.id}" />
+                                 </apex:commandLink>
+                              </b> </apex:column>
+                         <apex:column headervalue="AccountName" styleClass="showline">
+                               <b>                                   <apex:outputField value="{!c.con.AccountId}" >
+                                     </apex:outputField>
+                                </b>
+                         </apex:column>
+                         <apex:column headerValue="ContactNo" > 
+                             <apex:outputfield value="{!c.con.MobilePhone}" /> 
+                         </apex:column>
+                         <apex:column headerValue="Email"> 
+                             <apex:outputField value="{!c.con.Email}"/>
+                         </apex:column>
+                         <apex:inlineEditSupport event="ondblClick"  showOnEdit="SaveButton" hideOnEdit="massdelete"/>
+                    </apex:pageBlockTable>
+                </apex:outputPanel>
+              </apex:pageBlock>
+     </apex:form>
+   </apex:page>

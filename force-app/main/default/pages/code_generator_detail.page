@@ -1,0 +1,48 @@
+<apex:page standardController="account">
+	<apex:sectionHeader title="Account" subtitle="{!account.Name}"/>
+	<apex:pageBlock title="Account">
+
+		<apex:pageBlockSection title="Account Information" columns="2">
+			<apex:outputField title="Account Owner" value="{!account.OwnerId}"/>
+			<apex:outputField title="Rating" value="{!account.Rating}"/>
+			<apex:outputField title="Account Name" value="{!account.Name}"/>
+			<apex:outputField title="Phone" value="{!account.Phone}"/>
+			<apex:outputField title="Parent Account" value="{!account.ParentId}"/>
+			<apex:outputField title="Fax" value="{!account.Fax}"/>
+			<apex:outputField title="Account Number" value="{!account.AccountNumber}"/>
+			<apex:outputField title="Website" value="{!account.Website}"/>
+			<apex:outputField title="Account Site" value="{!account.Site}"/>
+			<apex:outputField title="Ticker Symbol" value="{!account.TickerSymbol}"/>
+			<apex:outputField title="Type" value="{!account.Type}"/>
+			<apex:outputField title="Ownership" value="{!account.Ownership}"/>
+			<apex:outputField title="Industry" value="{!account.Industry}"/>
+			<apex:outputField title="Employees" value="{!account.NumberOfEmployees}"/>
+			<apex:outputField title="Annual Revenue" value="{!account.AnnualRevenue}"/>
+			<apex:outputField title="SIC Code" value="{!account.Sic}"/>
+			<apex:outputField title="TotalAmount" value="{!account.TotalAmount__c}"/>
+			<apex:outputField title="Amount X" value="{!account.Amount_X__c}"/>
+			<apex:outputField title="Amount Y" value="{!account.Amount_Y__c}"/>
+			<apex:outputField title="Total X Y" value="{!account.Total_X_Y__c}"/>
+			<apex:outputField title="Potential Value" value="{!account.Potential_Value__c}"/>
+			<apex:outputField title="autonumber" value="{!account.autonumber__c}"/>
+			<apex:outputField title="Code" value="{!account.Code__c}"/>
+		</apex:pageBlockSection>
+
+
+		<apex:pageBlockSection title="Additional Information" columns="2">
+			<apex:outputField title="Customer Priority" value="{!account.CustomerPriority__c}"/>
+			<apex:outputField title="SLA" value="{!account.SLA__c}"/>
+			<apex:outputField title="SLA Expiration Date" value="{!account.SLAExpirationDate__c}"/>
+			<apex:outputField title="SLA Serial Number" value="{!account.SLASerialNumber__c}"/>
+			<apex:outputField title="Number of Locations" value="{!account.NumberofLocations__c}"/>
+			<apex:outputField title="Upsell Opportunity" value="{!account.UpsellOpportunity__c}"/>
+			<apex:outputField title="Active" value="{!account.Active__c}"/>
+		</apex:pageBlockSection>
+
+
+		<apex:pageBlockSection title="Description Information" columns="1">
+			<apex:outputField title="Description" value="{!account.Description}"/>
+		</apex:pageBlockSection>
+
+	</apex:pageBlock>
+</apex:page>

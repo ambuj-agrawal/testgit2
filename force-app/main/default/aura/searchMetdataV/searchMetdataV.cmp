@@ -1,0 +1,4 @@
+<aura:component controller="metadataController" implements="force:appHostable,flexipage:availableForAllPageTypes,force:lightningQuickAction" access="global" >
+	<c:AutoComplete aura:id="compB"/>
+    <lightning:button label="Call child method" onclick="{! c.onAction}" />
+</aura:component>

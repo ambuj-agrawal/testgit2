@@ -1,0 +1,25 @@
+<apex:page showHeader="false" sidebar="false" controller="ConnectToLinkedinController">
+    <head>
+        <apex:slds />
+    </head> 
+    <apex:form >
+          <center>
+              <div style="height:300px; width: 50%; height: 300px;width: 50%;background-color: rgba(236, 231, 231, 0.27)">
+                  <apex:commandButton id="authBtn" style="margin:120px;" styleClass="slds-button slds-button--brand" value="Connect To Linkedin1"  action="{!doAuthorization}" />
+                  <apex:commandButton id="accessTokenBtn" style="margin:120px;" styleClass="slds-button slds-button--brand" value="Connect To Linkedin2" action="{!getAccessToken}" />
+                  <apex:outputText value="{!message}"/>
+              </div>     
+          </center>
+          <apex:pageBlock > 
+                <apex:pageBlockButtons >
+                    <apex:commandButton style="margin:120px;" styleClass="slds-button slds-button--brand" value="Get Details" action="{!getDetails}"/>
+                </apex:pageBlockButtons>
+                <apex:pageBlockSection >
+                     <label>Id</label><apex:outputText value="{!linkedWrap.Id}"/>
+                     <label>HeadLine</label><apex:outputText value="{!linkedWrap.headline}"/>
+                     <label>First Name</label><apex:outputText value="{!linkedWrap.firstName}"/>
+                     <label>Last Name</label><apex:outputText value="{!linkedWrap.lastName}"/>
+                </apex:pageBlockSection>
+          </apex:pageBlock> 
+    </apex:form>
+</apex:page>

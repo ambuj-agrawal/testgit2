@@ -1,0 +1,45 @@
+<apex:page standardController="Contact" showHeader="false" sidebar="false">
+<style>
+    body {
+        background-image: url("http://eskipaper.com/images/simple-ios7-wallpaper-1.jpg"); 
+    }
+</style>
+<apex:form >
+<br/>
+<br/>
+
+        <center>
+        <table border="1" >
+        <tr><h1> !!!!!Registration Page!!!!! </h1></tr>
+        <br/>
+        <br/>
+        <br/>
+            <tr>
+                <th>First Name:</th>
+                <td><apex:inputField value="{!contact.FirstName}"/></td>
+            </tr>
+            <tr>
+                <th>Last Name:</th>
+                <td><apex:inputField required="true" value="{!contact.LastName}"/></td>
+            </tr>
+            <tr>
+                <th>Email ID:</th>
+                <td><apex:inputField required="true" value="{!contact.email}"/></td>
+            </tr>
+            <tr>
+                <th>Phone:</th>
+                <td><apex:inputField required="true" value="{!contact.Phone}"/></td>
+            </tr>
+            <tr>
+                <th>DOB:</th>
+                <td><apex:inputField required="true" value="{!contact.Birthdate}"/></td>
+            </tr>
+            <tr>
+                <td colspan="2"> <center><apex:commandButton value="Submit" action="{!Save}"/> </center></td>
+            </tr>
+        </table>
+        </center>
+
+</apex:form>>
+
+</apex:page>

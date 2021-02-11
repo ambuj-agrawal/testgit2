@@ -1,0 +1,95 @@
+<apex:page controller="SalesforceLogin_Con" showHeader="false" docType="html-5.0">
+    <style>  
+     body{  
+         font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;  
+         
+         background-image: url("http://1.bp.blogspot.com/-3lAKInMJMeM/T9P2Pl8NqaI/AAAAAAAAAlg/-gAjX9FImyg/s1600/smiley-wallpaper.jpg");
+         background-position: center;
+     }    
+     
+     .logo{
+         text-align:center;
+         height:44px;
+         width:44px;
+         margin: auto;
+         background-color: #2A94D6;
+         padding-top:8px;
+         border-radius:8px;
+         font-size:200%;
+         color:white;
+         display:inline-block;
+         font-weight:bold;
+     }
+     
+     .logoTxt{
+         margin-left:10px;
+         font-weight:bold;
+         color:#8199af;
+         display:inline-block;
+     }
+     
+     .spcl{
+         color:#1abc9c !important;
+         padding-bottom:-20px;
+         margin-bottom:0px !important;
+     }
+     
+     label{
+         font-size:130%;
+     }
+     
+     .msgIcon{display:none}
+     .messageText h4{display:none}
+   </style>
+   
+    <c:importvisualstrap />
+    <apex:form >
+        <c:visualstrapblock >
+            
+           <div class="container">
+                <apex:outputPanel layout="block" styleClass="row">
+                    <div class="col-md-6 col-md-offset-3">
+                        <div class="jumbotron spcl">
+                           <c:panel >
+                               <div style="margin-bottom:10px">
+                                   <div class="logo">S</div>
+                                   
+                                   <div class="logoTxt">
+                                       <div style="font-size:150%;">Salesforce Login</div>
+                                       <small style="font-weight:normal">Login to Salesforce using Security token to avoid Access Code emails</small>
+                                   </div>
+                               </div>
+                           </c:panel>
+                            <c:panel >
+                                <apex:pageMessages ></apex:pageMessages>
+                                <c:formblock alignment="horizontal" style="margin-top:5px;padding:10px">
+                                    <c:formgroup >
+                                        <apex:outputLabel >Username</apex:outputLabel>
+                                        <apex:inputText value="{!Username}" styleClass="form-control" required="true"/>
+                                    </c:formgroup> 
+                                    <c:formgroup >
+                                        <apex:outputLabel >Password + Security Token</apex:outputLabel>
+                                        <apex:inputSecret value="{!Password}" styleClass="form-control" required="true"/>
+                                    </c:formgroup>
+                                    <c:formgroup >
+                                        <apex:outputLabel >Domain</apex:outputLabel>
+                                        <apex:selectList value="{!domain}" styleClass="form-control" size="1">
+                                            <apex:selectOption itemValue="login" itemLabel="Production"></apex:selectOption>
+                                            <apex:selectOption itemValue="test" itemLabel="Sandbox"></apex:selectOption>
+                                        </apex:selectList>                                        
+                                    </c:formgroup>
+                                    <c:formgroup >
+                                        <apex:commandButton value="Login" action="{!doLogin}" styleClass="btn btn-success btn-md pull-right" style="width:200px"/>
+                                    </c:formgroup>
+                                    <small class="text-info">*Passwords are not saved by this page</small>
+                                </c:formblock>
+                            </c:panel>                            
+                        </div>
+                    </div>
+                </apex:outputPanel>
+            </div>
+            
+            
+        </c:visualstrapblock>
+    </apex:form>
+</apex:page>

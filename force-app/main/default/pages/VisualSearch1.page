@@ -1,0 +1,12 @@
+<apex:page standardController="Contact" extensions="VisualSearch1Extension" readOnly="true">
+<apex:form >
+    <apex:pageBlock >
+        <apex:pageBlockTable value="{!someName}" var="c" id="pbt">
+            <apex:column value="{!c.name}"/>
+            <apex:column value="{!c.Phone}"/>
+            <apex:column value="{!c.Email}"/>
+        </apex:pageBlockTable>
+        <apex:actionPoller action="{!incrementCounter}" reRender="pbt" interval="10"/>
+    </apex:pageBlock>    
+  </apex:form>
+</apex:page>

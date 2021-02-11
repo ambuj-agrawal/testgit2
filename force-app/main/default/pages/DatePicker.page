@@ -1,0 +1,35 @@
+<apex:page standardController="Contact">
+   <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+<!--this is where the magic happens-->
+    <script type="text/javascript">
+        //You need to wrap everything in document.ready because the select tag we are taregting needs to
+        //be loaded in the DOM befire we can access it.
+        $(document).ready(function() {
+            //-----EDIT THE NEXT TWO LINES-----
+            var startYear=1930; //replace 1982 with whatever year you want to start with;
+            var endYear=2050; //replace 2034 with whatever year you want to end with;
+            //-----EDIT BELLOW HERE AT YOUR OWN RISK-----
+            var optionsString='';
+            //Make sure that the endYear comes after the startYear
+            if(startYear<endYear){
+                //Loops through each date and renders the string for an option tag and addes it to the Optrionsstring variable
+                for(i=startYear;i<endYear+1;i++){
+                    optionsString += "<option value=\""+i+"\">"+i+"</option>";
+                }
+                //Replace the innerHTML of the calendar picker year select tag with the Optionsstring we constructed.
+                $('#calYearPicker').html(optionsString);
+            }
+        });
+    </script>
+
+    <apex:form >
+  <apex:pageBlock >
+      <apex:pageBlockSection >
+          <apex:inputField value="{!contact.lastname}"/>
+          <apex:inputField value="{!Contact.Birthdate}" id="calYearPicker"/>
+      </apex:pageBlockSection>
+  </apex:pageBlock>
+  
+  
+  </apex:form>
+</apex:page>

@@ -1,0 +1,62 @@
+<apex:page controller="ObjectFieldController">
+<!--It shows Action Status-->
+    
+    <apex:actionstatus id="counterStatus">
+        <apex:facet name="start">
+            <div class="waitingSearchDiv" id="el_loading" style="background-color: #fbfbfb; height:100%;opacity:0.65;width:100%;">
+                <div class="waitingHolder" style="top: 100px; width: 91px;">
+                <img class="waitingImage" src="/img/loading.gif" title="Please Wait..." />
+                <span class="waitingDescription">Loading...</span>
+                </div>
+            </div>
+        </apex:facet>
+    </apex:actionstatus>
+    
+    <apex:form > 
+    <apex:actionFunction name="initializeVar" action="{!init}" rerender="myFields" status="counterStatus"/>
+    
+    <!--Object Selection Section-->
+    
+        <apex:pageBlock >
+        <apex:outputPanel id="main">
+          <apex:pageBlockSection columns="1">
+              <apex:pageBlockSectionItem >
+                  <apex:outputlabel value="Object Names :"/> 
+                      <apex:actionRegion >      
+                           <apex:selectList value="{!selectedObject}" size="1" onchange="initializeVar(); return false;">
+                                    <apex:selectOptions value="{!ObjectNames}"/>
+                            </apex:selectList>
+                     </apex:actionRegion>                         
+              </apex:pageBlockSectionItem>
+
+    <!--Field Selection-->        
+             <apex:pageBlockSectionItem >
+                <apex:outputlabel value="Field Names :"/>   
+                    <apex:outputPanel id="myFields">   
+                        <apex:actionRegion >  
+                           <apex:selectList value="{!selectedField}" size="1">
+                                <apex:selectOptions value="{!ObjectFields}" />
+                                <apex:actionSupport event="onchange" rerender="myFields" action="{!PropertiesTable}" status="counterStatus"/>
+                            </apex:selectList>
+                        </apex:actionRegion> 
+                        
+                         <br/>                                                                                           
+              
+    <!--Table-->
+              <br/>
+              <font color='red' size='3'><u>Discription of the Field</u></font><br/>
+              <table border='2' cellspacing='2' cellpadding='3'>
+                <apex:repeat value="{!tableDataMap}" var="aa">                       
+                   <tr bgcolor='skyblue'> 
+                      <th> {!aa}</th>
+                      <td>{!tableDataMap[aa]} </td>
+                   </tr>
+                </apex:repeat>   
+              </table>                                                 
+             </apex:outputPanel> 
+             </apex:pageBlockSectionItem> 
+         </apex:pageBlockSection>              
+         </apex:outputPanel>
+      </apex:pageBlock>      
+  </apex:form>
+</apex:page>

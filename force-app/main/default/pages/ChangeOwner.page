@@ -1,0 +1,31 @@
+<apex:page standardController="Account" recordSetVar="Account" extensions="ChangeOwnerCtrl">
+    <apex:sectionHeader title="Change Lead Owner"/>      
+    <style>
+        .par {
+  text-indent: -2em;
+  margin-left: 2em;
+}
+    </style>
+    This screen allows you to transfer ownership of a lead to another user or queue. When you transfer ownership of a lead, the new owner will own:
+    <ul style="list-style-type:circle">
+  <li>all notes and attachments recorded for the current owner</li>
+  <li>all open activities (tasks and events) owned by the current owner</li>
+  
+</ul>  
+
+Note that completed activities and open activities owned by other users will not be transferred.
+<br/>
+
+<apex:form >
+<apex:pageMessages ></apex:pageMessages>
+<apex:pageBlock >
+    <apex:pageBlockSection title="Select New Owner">
+        <apex:inputField value="{!aa.ownerid}"/>
+    </apex:pageBlockSection>.
+    <apex:pageBlockButtons >
+        <apex:commandButton value="Save" action="{!ss}"/>
+        <apex:commandButton value="Cancel"/>
+    </apex:pageBlockButtons>
+</apex:pageBlock>
+</apex:form>
+</apex:page>

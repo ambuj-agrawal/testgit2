@@ -1,0 +1,17 @@
+<apex:page controller="ChangeprofilePic" sidebar="false" showHeader="false">
+  <apex:form enctype="multipart/form-data">
+    <apex:pageMessages />
+    <apex:pageBlock title="Upload Profile Photo">
+      <apex:pageBlockButtons >
+        <apex:commandButton action="{!upload}" value="Save"/>
+      </apex:pageBlockButtons>
+
+      <apex:pageBlockSection showHeader="false" columns="2" id="block1">
+       <apex:pageBlockSectionItem >
+          <apex:inputFile value="{!blbImageBody }"  id="file"/>
+        </apex:pageBlockSectionItem>
+      </apex:pageBlockSection>
+
+    </apex:pageBlock>
+  </apex:form>
+</apex:page>

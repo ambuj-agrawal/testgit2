@@ -1,0 +1,14 @@
+<apex:page standardController="Contact" extensions="VisualSearch1Extension">
+  <apex:form >
+      <apex:pageMessages ></apex:pageMessages>
+      <apex:pageBlock >
+          <apex:pageBlockSection id="pb" >
+              <apex:inputText value="{!ff}"/>    
+              <apex:commandButton value="Search" action="{!searche}" reRender="pb"/>
+          
+          </apex:pageBlockSection>
+      
+      </apex:pageBlock>
+  
+  </apex:form>
+</apex:page>

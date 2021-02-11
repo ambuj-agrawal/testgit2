@@ -1,0 +1,36 @@
+<aura:component controller="LinechartController" implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction">
+    <ltng:require scripts="/resource/Jquery1,
+                           /resource/HighChart/Highcharts.js,
+                           /resource/HighChart/highchart3d.js,
+                           /resource/HighChart/Highchartsexport.js
+                           " afterScriptsLoaded="{!c.afterScriptsLoaded}"/>
+    
+  
+    <aura:attribute name="chartType" type="string"/>
+    <aura:attribute name="chartTitle" type="string" default="Opportunity by StageName"/>
+    <aura:attribute name="chartSubTitle" type="string" default="Display Opportunity Count by StageName"/>
+    <aura:attribute name="xAxisCategories" type="string[]" default="['Qualification','Negotiation/Review','Closed Won','Id. Decision Makers','Proposal/Price Quote','Proposition','Prospecting','Perception Analysis','Needs Analysis']"/>
+    <aura:attribute name="yAxisParameter" type="string" default="No. of Opportunity"/>
+    <aura:attribute name="data" type="string"/>
+    
+    
+    
+    <div class="slds-card">
+        <br/>
+        <center><b><h1 class="slds-page-header__title slds-truncate slds-align-middle">
+            Graphical Representaion of Opportunity Vs StageName</h1></b></center>
+        <br/>
+        <div class="slds-grid slds-wrap slds-grid--pull-padded">
+            <div class="slds-col--padded slds-size--1-of-1 slds-medium-size--3-of-4 slds-large-size--4-of-12 cusdiv">
+                <div aura:id="chart" style="height: 400px"></div>
+            </div>
+            <div class="slds-col--padded slds-size--1-of-1 slds-medium-size--3-of-4 slds-large-size--4-of-12 cusdiv">
+                <div aura:id="linechart" style="height: 400px"></div>
+            </div>
+            <div class="slds-col--padded slds-size--1-of-1 slds-medium-size--3-of-4 slds-large-size--4-of-12 cusdiv">
+                <div aura:id="donutchart" style="height: 400px"></div>
+            </div>
+        </div>
+        <lightning:button value="Clear" label="clear" onclick="{!c.clear1}"/>
+    </div>
+</aura:component>

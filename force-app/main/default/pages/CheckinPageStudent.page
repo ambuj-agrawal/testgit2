@@ -1,0 +1,34 @@
+<apex:page standardController="Studentss__c" id="page">
+<p><button onclick="geoFindMe()">Show my location</button></p>
+<p id="out"></p>
+<script>
+function geoFindMe() {
+  var output = document.getElementById("out");
+
+  if (!navigator.geolocation){
+    output.innerHTML = "<p>Geolocation is not supported by your browser</p>";
+    return;
+  }
+
+  function success(position) {
+    var latitude  = position.coords.latitude;
+    var longitude = position.coords.longitude;
+    document.getElementById('page:form:lati').value = latitude  ;
+    document.getElementById('page:form:long').value = longitude  ;  
+   
+   
+  };
+
+  function error() {
+    output.innerHTML = "Unable to retrieve your location";
+  };
+
+  navigator.geolocation.getCurrentPosition(success, error);
+}
+</script>
+<apex:form id="form">
+latitude :<apex:inputField id="lati" value="{!Studentss__c.GeoLocation__Latitude__s}" />
+longitude :<apex:inputField id="long" value="{!Studentss__c.GeoLocation__Longitude__s}" />
+</apex:form>
+
+</apex:page>

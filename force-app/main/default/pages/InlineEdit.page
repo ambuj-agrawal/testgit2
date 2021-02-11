@@ -1,0 +1,7 @@
+<apex:page showHeader="true" tabstyle="Case">
+<apex:pageMessage severity="error" rendered="{!$User.UITheme = 'Theme3' &&
+$User.UIThemeDisplayed != 'Theme3'}">
+    </apex:pageMessage>
+    <apex:ListViews type="Case" rendered="{!$User.UITheme = 'Theme3' &&
+$User.UIThemeDisplayed = 'Theme3'}"/>
+</apex:page>

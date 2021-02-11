@@ -1,0 +1,124 @@
+<apex:page standardController="Account" recordSetVar="Account" extensions="MassEmailAccountCtrl" showHeader="true" standardStylesheets="true" sidebar="false" applyHtmlTag="true" applyBodyTag="true" docType="html-5.0">
+   
+   <html xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" lang="en">
+    <head>
+      <meta charset="utf-8" />
+      <meta http-equiv="x-ua-compatible" content="ie=edge" />
+      <title>Salesforce Lightning Design System Trailhead Module</title>
+      <meta name="viewport" content="width=device-width, initial-scale=1" />
+      
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+    <link type="text/css" rel="stylesheet" href="https://www.lightningdesignsystem.com/assets/styles/slds.css"/>
+ 
+<style>
+.msgIcon {
+    display: none!important
+}
+.customMessage * {
+    color: #fff!important
+}
+.customMessage {
+    margin: 5px 0!important;
+    max-width: 1280px;
+    opacity: 1!important;
+    width: 100%;
+    font-size: 12px;
+    border: 0px;
+    padding-left: 10px;
+}
+.message {
+    opacity: .1
+}
+</style>
+ 
+<script>
+    $(document).ready(function(){
+       overridePageMessages();
+    });
+ 
+    function overridePageMessages(){
+        var textureEffect = '';
+        //Uncomment below line for texture effect on page messages
+        //textureEffect = 'slds-theme--alert-texture';
+ 
+        $('.warningM3').addClass('slds-notify slds-notify--toast slds-theme--warning customMessage '+textureEffect);
+        $('.confirmM3').addClass('slds-notify slds-notify--alert slds-theme--success  customMessage '+textureEffect);
+        $('.errorM3').addClass('slds-notify slds-notify--alert slds-theme--error customMessage '+textureEffect);
+        $('.infoM3').addClass('slds-notify slds-notify--toast customMessage '+textureEffect);    
+ 
+        $('.errorM3').removeClass('errorM3');
+        $('.confirmM3').removeClass('confirmM3');
+        $('.infoM3').removeClass('infoM3');
+        $('.warningM3').removeClass('warningM3');
+    }
+</script>
+      
+      
+      
+      
+      <!-- Import the Design System style sheet -->
+      <apex:slds />
+    </head>
+    <body>
+    <apex:pageMessages ></apex:pageMessages>
+    <apex:form id="theform">
+      <div class="slds-m-around--medium">
+      <div class="slds-container--medium">
+         <div class="slds-form--stacked">
+            <div class="slds-form-element">
+               <label class="slds-form-element__label" for="CC">Email To</label>
+               <div class="slds-form-element__control">
+                  
+                   <apex:inputTextarea styleclass="slds-input" value="{!emailto}"/>   
+                  
+               </div>
+            </div>
+            
+            <div class="slds-form-element">
+               <label class="slds-form-element__label" for="CC">Email Cc</label>
+               <div class="slds-form-element__control">
+                  
+                   <apex:input type="text" styleclass="slds-input" value="{!emailcc}"/>   
+                  
+               </div>
+            </div>
+            
+            <div class="slds-form-element">
+               <label class="slds-form-element__label" for="CC">Subject</label>
+               <div class="slds-form-element__control">
+                  
+                   <apex:input type="text" styleclass="slds-input" value="{!subject}"/>   
+                  
+               </div>
+            </div>
+            
+            <div class="slds-form-element">
+                <label class="slds-form-element__label">Template</label>
+                <div class="slds-form-element__control">
+                    <div class="slds-select_container">
+                        <apex:selectList size="1" value="{!selectedTemplateId}" styleClass="slds-select">
+                            <apex:selectOptions value="{!MyPersonalTemplateOptions}" />
+                            <apex:actionSupport event="onchange" action="{!gettemplatebody}" /> 
+                        </apex:selectList>    
+                    </div>
+                </div>
+            </div>
+            
+            
+            
+            <div class="slds-form-element">
+               <label class="slds-form-element__label" for="textareaSample2">Mail Body</label>
+               <div class="slds-form-element__control">
+                   <apex:inputTextarea richText="true" styleclass="slds-input" value="{!body}"/>   
+               </div>
+            </div>
+            <div class="slds-form-element">    
+               <apex:commandButton value="Send" action="{!send}" styleClass="slds-button slds-button--brand"/>
+            </div>
+         </div>
+      </div>
+   </div>  
+   </apex:form>
+    </body>
+  </html>
+</apex:page>

@@ -1,0 +1,53 @@
+<apex:page doctype="html-5.0">
+  
+   <label id='test'>No geo-location</label>
+   
+   <script type="text/javascript">
+  
+    //error handler
+    function showError(error) {
+    alert('in error');
+    
+    var testElem = document.getElementById("test");
+    var strError = "Unknown Error";
+    switch(error.code) {
+        case error.PERMISSION_DENIED:
+            strError = "User denied the request for Geolocation."
+            break;
+        case error.POSITION_UNAVAILABLE:
+            strError = "Location information is unavailable."
+            break;
+        case error.TIMEOUT:
+            strError = "The request to get user location timed out."
+            break;
+        case error.UNKNOWN_ERROR:
+            strError = "An unknown error occurred."
+            break;
+    }
+    alert(strError);
+    testElem.innerText = strError;
+    };
+    
+    //success handler
+    function successGeo(position){
+            
+            lat = position.coords.latitude;
+            lon = position.coords.longitude;
+            var testElem = document.getElementById("test");
+            var strLatLong = 'lat: ' + lat.toString() + ', long:' + lon.toString();
+            <!--alert('Location: ' + strLatLong);-->
+            testElem.innerText  = strLatLong;
+    };
+    
+    // detection capabilities with JavaScript
+    if (navigator.geolocation) {
+        var testElem = document.getElementById("test");
+        testElem.innerText = 'getting geo location!';
+        <!--alert('geolocation enabled1');-->
+        
+        navigator.geolocation.getCurrentPosition(successGeo, showError);
+    };
+    
+    
+   </script>
+   </apex:page>

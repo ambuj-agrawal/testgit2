@@ -1,0 +1,7 @@
+<apex:page controller="PicklistAccount">
+    <apex:form >
+     <apex:selectList value="{!accountId}" title="Account" size="1" id="accounts">
+        <apex:selectOptions value="{!accounts}" />
+    </apex:selectList>
+    </apex:form>
+</apex:page>

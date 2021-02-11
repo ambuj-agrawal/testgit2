@@ -1,0 +1,86 @@
+<apex:page standardController="Issue_Tracker__c" extensions="IssueTrackerDetailCtrl" showHeader="true" tabStyle="log_a_case__tab" docType="html-5.0" lightningStylesheets="true" standardStylesheets="true">
+     
+    <apex:form id="theform">
+    <apex:pageMessages ></apex:pageMessages>
+    <apex:pageBlock mode="edit" >
+        <apex:pageBlockButtons location="top">
+            <apex:commandButton value="Cancel" action="{!cancel}"/>
+            <apex:commandButton value="Close Complaint" action="{!Closeissue}" onclick="return confirm('Are you sure you want to close this complaint?');"/>
+        </apex:pageBlockButtons>
+        <apex:pageBlockSection columns="3" title="Case Detail">
+            <apex:outputPanel >Name:  {!issuetrack.owner.name} <br/></apex:outputPanel>
+           <apex:outputPanel >Case Number : {!issuetrack.name}<br/></apex:outputPanel>
+           
+           <apex:outputField value="{!issuetrack.Issue_Status__c}"/>
+        </apex:pageBlockSection>
+        
+        <apex:pageBlockSection title="Case Information" collapsible="false" columns="1">
+            <apex:outputField value="{!issuetrack.Subject__c}"/>
+            <apex:outputField value="{!issuetrack.Severity_Level__c}"/>
+           
+             <apex:outputField value="{!issuetrack.Issues_With__c}"/>
+             <apex:outputField value="{!issuetrack.Issue_Description__c}"/>
+            <apex:outputField value="{!issuetrack.Instance_Type__c}"/>
+             <apex:outputField value="{!issuetrack.Reported_By__c}"/>
+            <apex:outputField value="{!issuetrack.Issue_Opened_On__c}"/>
+            <apex:outputField value="{!issuetrack.Remarks__c}"/>
+            <apex:outputField value="{!issuetrack.Issue_Impact__c}"/>
+        </apex:pageBlockSection>
+            <apex:pageBlockSection title="Attachments" collapsible="false" columns="1">
+                 
+                    <apex:inputFile id="fileToUpload" value="{!fileBody}" filename="{!fileName}" />
+            
+                <apex:commandButton value="Upload Attachment" action="{!UploadFile}" />
+              
+            <apex:pageBlockTable value="{!attch}" var="att" id="pbt" rendered="{!attch.size>0}">
+                <apex:column headerValue="Title"><apex:outputLink value="/servlet/servlet.FileDownload?file={!att.Id}" target="_blank">{!att.name}</apex:outputLink></apex:column>
+                <apex:column value="{!att.createddate}"/>
+                <apex:column value="{!att.CreatedById}"/>
+            </apex:pageBlockTable>
+            </apex:pageBlockSection>
+            
+            <apex:pageBlockSection title="Case Comments" collapsible="false" columns="1" id="pbbb">
+                <apex:commandButton value="New" action="{!newcase}" rendered="{!rend==true}"/>
+                <apex:inputfield rendered="{!rend==false}" value="{!issuecomments.Issue_Comments__c}" style="width: 90%; height: 105px"/>
+              
+                <apex:outputPanel >
+                    <apex:commandButton value="Save" rendered="{!rend==false}" action="{!save}"/>
+                    <apex:commandButton value="Cancel" action="{!cancelcase}" rendered="{!rend==false}"/>
+                </apex:outputPanel>
+                
+                <!-- <apex:pageBlockTable value="{!comlist}" var="att" id="pbt" rendered="{!comlist.size>0}">
+                    
+                    <apex:column value="{!att.CreatedById}"/>
+                    <apex:column value="{!att.createddate}"/>
+                    <apex:column value="{!att.Issue_Comments__c}"/>
+                    
+                 </apex:pageBlockTable>-->
+                 
+                     <apex:repeat value="{!comlist}" var="att">
+                             <font size="4">{!att.Issue_Comments__c}</font><br/>
+                             
+                             
+                             <!--<apex:outputField value="{!att.Issue_Comments__c}">
+                                 <apex:inlineEditSupport event="ondblClick" />
+                             </apex:outputField>-->
+   
+                             <font size="1">{!att.owner.name}&nbsp;{!att.createddate}</font><br/><br/>
+                             <apex:inlineEditSupport event="ondblClick" showOnEdit="saveButton,cancelButton" hideOnEdit="editButton"/>
+                             
+                     </apex:repeat>
+              
+            </apex:pageBlockSection>
+            
+            
+            
+
+
+    </apex:pageBlock>      
+    
+</apex:form>
+
+
+
+
+
+</apex:page>

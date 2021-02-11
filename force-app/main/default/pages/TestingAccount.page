@@ -1,0 +1,22 @@
+<apex:page controller="TestingAccountCtrl" lightningStylesheets="true">
+    <apex:form id="theform">
+        <apex:pageBlock title="Account Edit">
+            <apex:pageBlockSection title="Account Info" collapsible="true">
+                <apex:inputField value="{!Account.name}"/>
+
+                <apex:inputField value="{!Account.fax}"/>
+
+                <!--<apex:inputField value="{!Account.website}"/>
+                <apex:inputField value="{!Account.name}"/>
+                <apex:inputField value="{!Account.name}"/>-->
+
+            </apex:pageBlockSection>
+            <apex:pageBlockSection title="only for Rendered" rendered="{!b==false}">
+            </apex:pageBlockSection>
+            <apex:pageBlockButtons location="top">
+                <apex:commandButton value="Save" action="{!save}" reRender="theform"/>
+            </apex:pageBlockButtons>
+        </apex:pageBlock>
+    </apex:form>
+  
+</apex:page>

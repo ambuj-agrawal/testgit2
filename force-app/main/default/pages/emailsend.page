@@ -1,0 +1,10 @@
+<apex:page controller="email_class" >
+<apex:form >
+<apex:pageBlock title="hello">
+<b>Enter subject </b> <apex:inputText value="{!subject}"/> <p/>
+<b>Enter enter email text </b> <apex:inputTextarea value="{!email_body}"/>
+<apex:commandButton value="send " action="{!send}"/>
+
+</apex:pageBlock>
+</apex:form>
+</apex:page>

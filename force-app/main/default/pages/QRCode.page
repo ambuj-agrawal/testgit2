@@ -1,0 +1,80 @@
+<apex:page >
+    <script type="text/javascript"
+      src="//ajax.aspnetcdn.com/ajax/jQuery/jquery-1.10.2.min.js"></script>
+    
+<script type="text/javascript" src="{!URLFOR($Resource.QRCode, 'jsqrcode-master/src/grid.js')}"></script>
+<script type="text/javascript" src="{!URLFOR($Resource.QRCode, 'jsqrcode-master/src/version.js')}"></script>
+<script type="text/javascript" src="{!URLFOR($Resource.QRCode, 'jsqrcode-master/src/detector.js')}"></script>
+<script type="text/javascript" src="{!URLFOR($Resource.QRCode, 'jsqrcode-master/src/formatinf.js')}"></script>
+<script type="text/javascript" src="{!URLFOR($Resource.QRCode, 'jsqrcode-master/src/errorlevel.js')}"></script>
+<script type="text/javascript" src="{!URLFOR($Resource.QRCode, 'jsqrcode-master/src/bitmat.js')}"></script>
+<script type="text/javascript" src="{!URLFOR($Resource.QRCode, 'jsqrcode-master/src/datablock.js')}"></script>
+<script type="text/javascript" src="{!URLFOR($Resource.QRCode, 'jsqrcode-master/src/bmparser.js')}"></script>
+<script type="text/javascript" src="{!URLFOR($Resource.QRCode, 'jsqrcode-master/src/datamask.js')}"></script>
+<script type="text/javascript" src="{!URLFOR($Resource.QRCode, 'jsqrcode-master/src/rsdecoder.js')}"></script>
+<script type="text/javascript" src="{!URLFOR($Resource.QRCode, 'jsqrcode-master/src/gf256poly.js')}"></script>
+<script type="text/javascript" src="{!URLFOR($Resource.QRCode, 'jsqrcode-master/src/gf256.js')}"></script>
+<script type="text/javascript" src="{!URLFOR($Resource.QRCode, 'jsqrcode-master/src/decoder.js')}"></script>
+<script type="text/javascript" src="{!URLFOR($Resource.QRCode, 'jsqrcode-master/src/qrcode.js')}"></script>
+<script type="text/javascript" src="{!URLFOR($Resource.QRCode, 'jsqrcode-master/src/findpat.js')}"></script>
+<script type="text/javascript" src="{!URLFOR($Resource.QRCode, 'jsqrcode-master/src/alignpat.js')}"></script>
+<script type="text/javascript" src="{!URLFOR($Resource.QRCode, 'jsqrcode-master/src/databr.js')}"></script>
+
+  <form>
+    <input type="file" onchange="previewFile()" /><br/>
+  <h1>Preview</h1>
+   <div style="height:200px">
+    <img src="" id="preview" height="200" alt="Image preview..." />
+   </div>  
+  </form>
+
+    <p>If the image above looks clear, click the decode button.  If not, try again!</p>
+    <button id="decode" onclick="decode()">Decode</button> 
+  <script>
+  
+  function read(a)
+  {
+        alert(a);
+        if( (typeof sforce != 'undefined') && (sforce != null) ) {
+            sforce.one.navigateToSObject(a);
+        }
+        else {
+            window.location="/" + a;
+        }        
+  }         
+        
+  $(document).ready(function() {
+        qrcode.callback = read;
+  });
+  
+  
+function previewFile() {
+  var preview = document.querySelector('#preview');
+  var file    = document.querySelector('input[type=file]').files[0];
+  var reader  = new FileReader();
+
+  reader.onloadend = function () {
+    preview.src = reader.result;
+  }
+
+  if (file) {
+    reader.readAsDataURL(file);
+  } else {
+    preview.src = "";
+  }
+}
+
+function decode() {
+    try
+    {
+    var preview=document.querySelector('#preview');
+    qrcode.decode(preview.src);
+    }
+    catch (e)
+    {
+       alert('Error - ' + e);
+    }
+}
+
+</script>
+</apex:page>

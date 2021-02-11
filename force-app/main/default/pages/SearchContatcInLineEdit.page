@@ -1,0 +1,77 @@
+<apex:page standardController="Contact" extensions="SearchContatcInLineEditCtrl" id="page">
+    <apex:form id="form">
+        <apex:pageMessages id="msg"/>
+            <apex:actionstatus id="counterStatus">
+                <apex:facet name="start">
+                    <div class="waitingSearchDiv" id="el_loading" style="background-color: #fbfbfb; height:100%;opacity:0.65;width:100%;">
+                        <div class="waitingHolder" style="top: 100px; width: 91px;">
+                            <img class="waitingImage" src="/img/loading.gif" title="Please Wait..." />
+                                <span class="waitingDescription">Loading...</span>
+                        </div>
+                    </div>
+                </apex:facet>
+            </apex:actionstatus>
+            <apex:actionFunction name="checkall" action="{!checkall}" reRender="refreshpbs" status="counterStatus"/>
+            <apex:actionFunction name="checksingle" action="{!checkMainSelect}" reRender="refreshpbs" status="counterStatus"/>
+            
+        <apex:pageblock id="pb1">
+            <apex:pageblockSection >     
+                <apex:inputField value="{!Contact.FirstName}"/>
+                <apex:inputField value="{!Contact.LastName}" required="false"/>
+                <apex:inputField value="{!Contact.Email}"/>
+                <apex:inputField value="{!Contact.Phone}"/>
+                <apex:inputField value="{!Contact.accountid}"/>
+                <apex:commandButton value="search" action="{!search}" reRender="form" status="counterStatus"/>
+            </apex:pageblockSection> 
+        </apex:pageBlock>
+    
+        <apex:pageBlock rendered="{!wrapList.size != 0}" id="full">
+            <apex:pageblockSection title="Contact Details" id="refreshpbs"> 
+                <apex:pageblockTable value="{!mapAccount[counter]}" var="w" id="pb" style="width:180%" >
+                    <apex:facet name="footer"></apex:facet>
+                    <apex:column > 
+                        <apex:facet name="header">
+                            <apex:inputCheckbox value="{!checkmain}" onclick="checkall();" />
+                        </apex:facet>      
+                        <apex:inputCheckbox value="{!w.isEdit}" onclick="checksingle();"/>              
+                    </apex:column>
+                    <apex:column >
+                        <apex:facet name="header">Action</apex:facet>
+                            <apex:commandLink action="{!view}" value="View" target="_blank">
+                                <apex:param name="pp" assignTo="{!selectcontact}" value="{!w.cont.id}" />
+                            </apex:commandLink>
+                             &nbsp; | &nbsp;   
+                            <apex:commandLink value="Del"  action="{!Del}" reRender="pb,msg" status="counterStatus">
+                                <apex:param name="pp1" assignTo="{!selectcontact}" value="{!w.cont.id}"/>
+                            </apex:commandLink>
+                    </apex:column>
+                    <apex:column headerValue="First Name">
+                        <apex:outputText value="{!w.cont.FirstName}" rendered="{!w.isEdit == False}"></apex:outputText>
+                        <apex:inputText value="{!w.cont.FirstName}" rendered="{!w.isEdit == True}"/>               
+                    </apex:column>  
+                    <apex:column headerValue="Last Name">
+                        <apex:outputText value="{!w.cont.LastName}" rendered="{!w.isEdit == False}"></apex:outputText>
+                        <apex:inputText value="{!w.cont.LastName}" rendered="{!w.isEdit == True}"/>               
+                    </apex:column>  
+                    <apex:column headerValue="Email" >
+                        <apex:outputText value="{!w.cont.email}" rendered="{!w.isEdit == False}"></apex:outputText>
+                        <apex:inputText value="{!w.cont.email}" rendered="{!w.isEdit == True}"/>               
+                    </apex:column>   
+                    <apex:column headerValue="Phone" >
+                        <apex:outputText value="{!w.cont.phone}" rendered="{!w.isEdit == False}"></apex:outputText>
+                        <apex:inputText value="{!w.cont.phone}" rendered="{!w.isEdit == True}"/>               
+                    </apex:column>  
+                    <apex:column headerValue="Account Name" >
+                        <apex:outputText value="{!w.cont.Account.Name}" rendered="{!w.isEdit == False}"></apex:outputText>
+                        <apex:inputfield value="{!w.cont.AccountID}" rendered="{!w.isEdit == True}"/>               
+                    </apex:column>   
+                </apex:pageBlockTable>  
+            </apex:pageblockSection> 
+                <apex:commandButton action="{!Beginning}" title="Beginning" value="First" reRender="refreshpbs" status="counterStatus"/>
+                <apex:commandButton action="{!Previous}" title="Previous" value="Previous" reRender="refreshpbs" status="counterStatus"/>        
+                <apex:commandButton action="{!Next}" title="Next" value="Next" reRender="refreshpbs" status="counterStatus"/>
+                <apex:commandButton action="{!End}" title="End" value="Last" reRender="refreshpbs" status="counterStatus"/>  
+                <apex:commandButton action="{!save}" Value="Save" style="float:right" reRender="form" status="counterStatus"/>    
+        </apex:pageblock>
+    </apex:form>
+</apex:page>

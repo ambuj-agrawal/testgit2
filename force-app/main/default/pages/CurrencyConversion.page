@@ -1,0 +1,22 @@
+<apex:page controller="CurrencyConversionCtrl">
+    <apex:form >
+        <apex:pageBlock >
+            <apex:pageBlockSection >
+                <apex:pageBlockSectionItem >
+                    <apex:outputLabel value="from"></apex:outputLabel>
+                    <apex:inputField value="{!acc.Currency_Test__c}" label="from"/>
+                </apex:pageBlockSectionItem>
+                <apex:pageBlockSectionItem >
+                    <apex:outputLabel value="To"></apex:outputLabel>
+                    <apex:inputField value="{!acc1.Currency_Test__c}" label="from"/>
+                </apex:pageBlockSectionItem>
+                <apex:outputText value="{!rate}"> </apex:outputText>
+            </apex:pageBlockSection>
+                
+            <apex:pageBlockButtons location="bottom">
+                <apex:commandButton value="Convert" action="{!convert}"/>
+            </apex:pageBlockButtons>
+        </apex:pageBlock>
+    </apex:form>
+  
+</apex:page>

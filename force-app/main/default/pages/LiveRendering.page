@@ -1,0 +1,16 @@
+<apex:page controller="AccountFieldCtrl">
+      <apex:form >
+          <apex:pageBlock >
+              <apex:pageBlockSection id="accinfo">
+                  <apex:inputField value="{!cc.lastname}"/>
+                  <apex:inputField value="{!cc.AccountId}">
+                      <apex:actionSupport event="onchange" action="{!AccountPopulated}" rerender="accinfo, msgs"/>
+                  </apex:inputField>
+                  <apex:outputField value="{!cc.Account.Name}"/>
+              
+              </apex:pageBlockSection>
+          
+          </apex:pageBlock>
+      
+      </apex:form>
+</apex:page>

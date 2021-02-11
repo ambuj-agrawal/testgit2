@@ -1,0 +1,21 @@
+<apex:page showHeader="false" sidebar="false" applyBodyTag="false">
+<html>
+ <head></head>
+     <body>
+         <h1 style="display: block; margin-top: 20px; textalign:center">
+        
+             Launching Business Card Reader Pro...
+         </h1>
+    
+         <script>
+             window.setTimeout(function() {
+                 var bcrLinkElement = document.createElement('a');
+                 bcrLinkElement.href = "bcr://sf";
+                 bcrLinkElement.id = "toBCR";
+                 document.body.appendChild(bcrLinkElement);
+                 document.getElementById('toBCR').click();
+             }, 3000); 
+         </script>
+     </body>
+</html>
+</apex:page>

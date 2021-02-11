@@ -1,0 +1,5 @@
+<apex:page controller="SingleController">
+    <apex:pageBlock >
+        Welcome {!name}
+    </apex:pageBlock>
+</apex:page>

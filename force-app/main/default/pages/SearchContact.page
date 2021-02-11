@@ -1,0 +1,47 @@
+<apex:page standardController="Contact" extensions="SearchContactcontroller" id="pg">  
+  <apex:form >
+  <apex:actionFunction name="refreshPanel" rerender="pb" action="{!showEdit}"/>  
+  <apex:pageBlock id="pr">
+      <apex:pageblockSection >
+          <apex:inputText value="{!fname}" label="FirstName"/>  
+          <apex:inputText value="{!lname}" label="LastName"/> 
+          <apex:inputText value="{!phn}" label="Phone"/> 
+          <apex:inputText value="{!mail}" label="Email"/>  
+          <apex:inputfield value="{!cont.AccountId}" label="AccountId" >
+              <apex:actionSupport event="onchange" action="{!fetchMemberDetails}" reRender="pr"/>    
+          </apex:inputfield>
+          <apex:commandButton value="Search records" action="{!search}" />  
+      </apex:pageblockSection>
+    </apex:pageBlock> 
+   <apex:pageBlock title="Search Result"  rendered="{!showTable}">
+    <apex:pageblockTable value="{!con}" var="c" id="pb">  
+     <apex:column >
+            <apex:facet name="header"><input type="checkbox"/></apex:facet>
+            <apex:inputCheckbox value="{!showEdit}" onclick="refreshPanel();">
+            </apex:inputCheckbox>
+        </apex:column>
+        <apex:column headerValue="First Name">
+            
+            <apex:outputText value="{!c.FirstName}" rendered="{!showEdit== false}"/>
+            <apex:inputText value="{!c.FirstName}" rendered="{!showEdit== True}"/>
+        </apex:column>
+        <apex:column headerValue="Last Name">
+            <apex:inputText value="{!c.LastName}" rendered="{!showEdit== True}"/>
+            <apex:outputText value="{!c.LastName}" rendered="{!showEdit== False}"/>
+        </apex:column>
+        <apex:column headerValue="Email">
+            <apex:inputText value="{!c.Email}" rendered="{!showEdit== True}"/>
+            <apex:outputText value="{!c.Email}" rendered="{!showEdit== False}"/>
+        </apex:column>
+        <apex:column headerValue="Phone">
+            <apex:inputText value="{!c.Phone}" rendered="{!showEdit== True}"/>
+            <apex:outputText value="{!c.Phone}" rendered="{!showEdit== False}"/>
+        </apex:column>
+        <apex:column headerValue="Account Name">
+            <apex:inputfield value="{!c.AccountId}" rendered="{!showEdit== True}"/>
+            <apex:outputField value="{!c.AccountId}" rendered="{!showEdit== False}"/>
+        </apex:column>
+    </apex:pageBlockTable>     
+   </apex:pageBlock>   
+  </apex:form>  
+ </apex:page>

@@ -1,0 +1,78 @@
+<apex:page controller="visitController" showHeader="false" sidebar="false" setup="true" standardStylesheets="false">
+
+<head>
+
+    <meta content="width = device-width"/>
+
+    <script
+
+        src="/mobileclient/api/mobileforce.js"></script>
+
+    <script>
+
+    function updateLocation(lat,lon) {  
+
+        document.getElementById(
+
+        '{!$Component.form.block.longitude}').value=lon;
+
+        document.getElementById(
+
+        '{!$Component.form.block.latitude}').value=lat;
+
+    }
+
+    function getLocation() {
+
+        mobileforce.device.getLocation(updateLocation);
+
+        //work around required for BB
+
+        if (window.blackberry)
+
+            setInterval("getLocation()", 10000);
+
+            return false;
+
+    }
+
+    </script>
+
+</head>
+
+ 
+
+<apex:form >
+
+    <apex:pageBlock >
+
+    Sales Visit Name: <br />
+
+    <apex:inputField value="{!visit.name}" /><br />
+
+    Sales Visit Description: <br />
+
+    <apex:inputField value="{!visit.Description__c}" /><br />
+
+    Longitude: <br />
+
+    <apex:inputField value="{!visit.Longitude__c}"
+
+        /><br />
+
+    Latitude: <br />
+
+    <apex:inputField value="{!visit.Latitude__c}"
+
+        /><br />
+
+    <button value="GPS"
+
+        onclick="getLocation();"> Get location </button>
+
+    <apex:commandButton action="{!save}" value="Save!" />
+
+    </apex:pageBlock>
+
+</apex:form>
+</apex:page>
